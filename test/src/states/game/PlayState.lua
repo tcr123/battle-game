@@ -1,17 +1,9 @@
---[[
-    GD50
-    Legend of Zelda
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-]]
-
 PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
     self.player = Player {
-        animations = ENTITY_DEFS['player'].animations,
-        walkSpeed = ENTITY_DEFS['player'].walkSpeed,
+        animations = ENTITY_DEFS['player5'].animations,
+        walkSpeed = ENTITY_DEFS['player5'].walkSpeed,
         
         x = VIRTUAL_WIDTH / 2 - 8,
         y = VIRTUAL_HEIGHT / 2 - 11,
@@ -32,7 +24,7 @@ function PlayState:init()
     self.player.stateMachine = StateMachine {
         ['walk'] = function() return PlayerWalkState(self.player, self.dungeon) end,
         ['idle'] = function() return PlayerIdleState(self.player) end,
-        ['swing-sword'] = function() return PlayerSwingSwordState(self.player, self.dungeon) end,
+        ['attack'] = function() return PlayerAttackState(self.player, self.dungeon) end,
         ['pickup'] = function() return PlayerPickUpState(self.player, self.dungeon) end,
         ['carry'] = function() return PlayerCarryState(self.player, self.dungeon) end,
         ['throw'] = function() return PlayerThrowPotState(self.player, self.dungeon) end,

@@ -1,11 +1,3 @@
---[[
-    GD50
-    Legend of Zelda
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-]]
-
 PlayerIdleState = Class{__includes = EntityIdleState}
 
 function PlayerIdleState:enter(player)
@@ -30,7 +22,7 @@ function PlayerIdleState:update(dt)
 
     if self.entity.item == nil then
         if love.keyboard.wasPressed('space') then
-            self.entity:changeState('swing-sword')
+            self.entity:changeState('attack')
         end
 
         if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then

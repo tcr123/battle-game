@@ -1,13 +1,6 @@
---[[
-    GD50
-    Legend of Zelda
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-]]
 
 ENTITY_DEFS = {
-    ['player'] = {
+    ['player1'] = {
         walkSpeed = PLAYER_WALK_SPEED,
         animations = {
             ['walk-left'] = {
@@ -28,33 +21,17 @@ ENTITY_DEFS = {
                 frames = {1},
                 texture = 'enemy'
             },
-            ['idle-down'] = {
-                frames = {1},
+            ['attack-left'] = {
+                frames = {20, 19, 18, 17},
+                interval = 0.07,
+                looping = false,
+                texture = 'enemy-mirror'
+            },
+            ['attack-right'] = {
+                frames = {11, 12, 13, 14},
+                interval = 0.07,
+                looping = false,
                 texture = 'enemy'
-            },
-            ['sword-left'] = {
-                frames = {13, 14, 15, 16},
-                interval = 0.05,
-                looping = false,
-                texture = 'character-swing-sword'
-            },
-            ['sword-right'] = {
-                frames = {9, 10, 11, 12},
-                interval = 0.05,
-                looping = false,
-                texture = 'character-swing-sword'
-            },
-            ['sword-down'] = {
-                frames = {1, 2, 3, 4},
-                interval = 0.05,
-                looping = false,
-                texture = 'character-swing-sword'
-            },
-            ['sword-up'] = {
-                frames = {5, 6, 7, 8},
-                interval = 0.05,
-                looping = false,
-                texture = 'character-swing-sword'
             },
             ['pot-lift-left'] = {
                 frames = {10, 11, 12},
@@ -122,172 +99,399 @@ ENTITY_DEFS = {
             }
         }
     },
-    ['skeleton'] = {
-        texture = 'entities',
+    ['player2'] = {
+        walkSpeed = PLAYER_WALK_SPEED,
         animations = {
             ['walk-left'] = {
-                frames = {22, 23, 24, 23},
-                interval = 0.2
+                frames = {30, 29, 28, 29},
+                interval = 0.155,
+                texture = 'woody-mirror'
             },
             ['walk-right'] = {
-                frames = {34, 35, 36, 35},
-                interval = 0.2
-            },
-            ['walk-down'] = {
-                frames = {10, 11, 12, 11},
-                interval = 0.2
-            },
-            ['walk-up'] = {
-                frames = {46, 47, 48, 47},
-                interval = 0.2
+                frames = {21, 22, 23, 22},
+                interval = 0.15,
+                texture = 'woody'
             },
             ['idle-left'] = {
-                frames = {23}
+                frames = {10},
+                texture = 'woody-mirror'
             },
             ['idle-right'] = {
-                frames = {35}
+                frames = {1},
+                texture = 'woody'
             },
-            ['idle-down'] = {
-                frames = {11}
+            ['attack-left'] = {
+                frames = {20, 19, 18, 17, 16, 15},
+                interval = 0.05,
+                looping = false,
+                texture = 'woody-mirror'
             },
-            ['idle-up'] = {
-                frames = {47}
+            ['attack-right'] = {
+                frames = {11, 12, 13, 14, 15, 16},
+                interval = 0.05,
+                looping = false,
+                texture = 'woody'
+            },
+            ['pot-lift-left'] = {
+                frames = {10, 11, 12},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-right'] = {
+                frames = {4, 5, 6},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-down'] = {
+                frames = {1, 2, 3},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-up'] = {
+                frames = {7, 8, 9},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['lift-left'] = {
+                frames = {12},
+                texture = 'character-pot-lift'
+            },
+            ['lift-right'] = {
+                frames = {6},
+                texture = 'character-pot-lift'
+            },
+            ['lift-down'] = {
+                frames = {3},
+                texture = 'character-pot-lift'
+            },
+            ['lift-up'] = {
+                frames = {9},
+                texture = 'character-pot-lift'
+            },
+            ['carry-left'] = {
+                frames = {13, 14, 15, 16},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-right'] = {
+                frames = {5, 6, 7, 8},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-down'] = {
+                frames = {1, 2, 3, 4},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-up'] = {
+                frames = {9, 10, 11, 12},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
             }
         }
     },
-    ['slime'] = {
-        texture = 'entities',
+    ['player3'] = {
+        walkSpeed = PLAYER_WALK_SPEED,
         animations = {
             ['walk-left'] = {
-                frames = {61, 62, 63, 62},
-                interval = 0.2
+                frames = {30, 29, 28, 29},
+                interval = 0.155,
+                texture = 'ex-mirror'
             },
             ['walk-right'] = {
-                frames = {73, 74, 75, 74},
-                interval = 0.2
-            },
-            ['walk-down'] = {
-                frames = {49, 50, 51, 50},
-                interval = 0.2
-            },
-            ['walk-up'] = {
-                frames = {86, 86, 87, 86},
-                interval = 0.2
+                frames = {21, 22, 23, 22},
+                interval = 0.15,
+                texture = 'ex'
             },
             ['idle-left'] = {
-                frames = {62}
+                frames = {10},
+                texture = 'ex-mirror'
             },
             ['idle-right'] = {
-                frames = {74}
+                frames = {1},
+                texture = 'ex'
             },
-            ['idle-down'] = {
-                frames = {50}
+            ['attack-left'] = {
+                frames = {20, 19, 18, 17, 16, 15, 14},
+                interval = 0.08,
+                looping = false,
+                texture = 'ex-mirror'
             },
-            ['idle-up'] = {
-                frames = {86}
+            ['attack-right'] = {
+                frames = {11, 12, 13, 14, 15, 16, 17},
+                interval = 0.08,
+                looping = false,
+                texture = 'ex'
+            },
+            ['pot-lift-left'] = {
+                frames = {10, 11, 12},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-right'] = {
+                frames = {4, 5, 6},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-down'] = {
+                frames = {1, 2, 3},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-up'] = {
+                frames = {7, 8, 9},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['lift-left'] = {
+                frames = {12},
+                texture = 'character-pot-lift'
+            },
+            ['lift-right'] = {
+                frames = {6},
+                texture = 'character-pot-lift'
+            },
+            ['lift-down'] = {
+                frames = {3},
+                texture = 'character-pot-lift'
+            },
+            ['lift-up'] = {
+                frames = {9},
+                texture = 'character-pot-lift'
+            },
+            ['carry-left'] = {
+                frames = {13, 14, 15, 16},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-right'] = {
+                frames = {5, 6, 7, 8},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-down'] = {
+                frames = {1, 2, 3, 4},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-up'] = {
+                frames = {9, 10, 11, 12},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
             }
         }
     },
-    ['bat'] = {
-        texture = 'entities',
+    ['player4'] = {
+        walkSpeed = PLAYER_WALK_SPEED,
         animations = {
             ['walk-left'] = {
-                frames = {64, 65, 66, 65},
-                interval = 0.2
+                frames = {30, 29, 28, 29},
+                interval = 0.155,
+                texture = 'dennis-mirror'
             },
             ['walk-right'] = {
-                frames = {76, 77, 78, 77},
-                interval = 0.2
-            },
-            ['walk-down'] = {
-                frames = {52, 53, 54, 53},
-                interval = 0.2
-            },
-            ['walk-up'] = {
-                frames = {88, 89, 90, 89},
-                interval = 0.2
+                frames = {21, 22, 23, 22},
+                interval = 0.15,
+                texture = 'dennis'
             },
             ['idle-left'] = {
-                frames = {64, 65, 66, 65},
-                interval = 0.2
+                frames = {10},
+                texture = 'dennis-mirror'
             },
             ['idle-right'] = {
-                frames = {76, 77, 78, 77},
-                interval = 0.2
+                frames = {1},
+                texture = 'dennis'
             },
-            ['idle-down'] = {
-                frames = {52, 53, 54, 53},
-                interval = 0.2
+            ['attack-left'] = {
+                frames = {20, 19, 18, 17, 16, 15},
+                interval = 0.05,
+                looping = false,
+                texture = 'dennis-mirror'
             },
-            ['idle-up'] = {
-                frames = {88, 89, 90, 89},
-                interval = 0.2
+            ['attack-right'] = {
+                frames = {11, 12, 13, 14, 15, 16},
+                interval = 0.05,
+                looping = false,
+                texture = 'dennis'
+            },
+            ['pot-lift-left'] = {
+                frames = {10, 11, 12},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-right'] = {
+                frames = {4, 5, 6},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-down'] = {
+                frames = {1, 2, 3},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['pot-lift-up'] = {
+                frames = {7, 8, 9},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
+            },
+            ['lift-left'] = {
+                frames = {12},
+                texture = 'character-pot-lift'
+            },
+            ['lift-right'] = {
+                frames = {6},
+                texture = 'character-pot-lift'
+            },
+            ['lift-down'] = {
+                frames = {3},
+                texture = 'character-pot-lift'
+            },
+            ['lift-up'] = {
+                frames = {9},
+                texture = 'character-pot-lift'
+            },
+            ['carry-left'] = {
+                frames = {13, 14, 15, 16},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-right'] = {
+                frames = {5, 6, 7, 8},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-down'] = {
+                frames = {1, 2, 3, 4},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-up'] = {
+                frames = {9, 10, 11, 12},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
             }
         }
     },
-    ['ghost'] = {
-        texture = 'entities',
+    ['player5'] = {
+        walkSpeed = PLAYER_WALK_SPEED,
         animations = {
             ['walk-left'] = {
-                frames = {67, 68, 69, 68},
-                interval = 0.2
+                frames = {30, 29, 28, 29},
+                interval = 0.155,
+                texture = 'davis-mirror'
             },
             ['walk-right'] = {
-                frames = {79, 80, 81, 80},
-                interval = 0.2
-            },
-            ['walk-down'] = {
-                frames = {55, 56, 57, 56},
-                interval = 0.2
-            },
-            ['walk-up'] = {
-                frames = {91, 92, 93, 92},
-                interval = 0.2
+                frames = {21, 22, 23, 22},
+                interval = 0.15,
+                texture = 'davis'
             },
             ['idle-left'] = {
-                frames = {68}
+                frames = {10},
+                texture = 'davis-mirror'
             },
             ['idle-right'] = {
-                frames = {80}
+                frames = {1},
+                texture = 'davis'
             },
-            ['idle-down'] = {
-                frames = {56}
+            ['attack-left'] = {
+                frames = {20, 19, 18, 17, 16, 15},
+                interval = 0.05,
+                looping = false,
+                texture = 'davis-mirror'
             },
-            ['idle-up'] = {
-                frames = {92}
-            }
-        }
-    },
-    ['spider'] = {
-        texture = 'entities',
-        animations = {
-            ['walk-left'] = {
-                frames = {70, 71, 72, 71},
-                interval = 0.2
+            ['attack-right'] = {
+                frames = {11, 12, 13, 14, 15, 16},
+                interval = 0.05,
+                looping = false,
+                texture = 'davis'
             },
-            ['walk-right'] = {
-                frames = {82, 83, 84, 83},
-                interval = 0.2
+            ['pot-lift-left'] = {
+                frames = {10, 11, 12},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
             },
-            ['walk-down'] = {
-                frames = {58, 59, 60, 59},
-                interval = 0.2
+            ['pot-lift-right'] = {
+                frames = {4, 5, 6},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
             },
-            ['walk-up'] = {
-                frames = {94, 95, 96, 95},
-                interval = 0.2
+            ['pot-lift-down'] = {
+                frames = {1, 2, 3},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
             },
-            ['idle-left'] = {
-                frames = {71}
+            ['pot-lift-up'] = {
+                frames = {7, 8, 9},
+                interval = 0.10,
+                looping = false,
+                texture = 'character-pot-lift'
             },
-            ['idle-right'] = {
-                frames = {83}
+            ['lift-left'] = {
+                frames = {12},
+                texture = 'character-pot-lift'
             },
-            ['idle-down'] = {
-                frames = {59}
+            ['lift-right'] = {
+                frames = {6},
+                texture = 'character-pot-lift'
             },
-            ['idle-up'] = {
-                frames = {95}
+            ['lift-down'] = {
+                frames = {3},
+                texture = 'character-pot-lift'
+            },
+            ['lift-up'] = {
+                frames = {9},
+                texture = 'character-pot-lift'
+            },
+            ['carry-left'] = {
+                frames = {13, 14, 15, 16},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-right'] = {
+                frames = {5, 6, 7, 8},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-down'] = {
+                frames = {1, 2, 3, 4},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
+            },
+            ['carry-up'] = {
+                frames = {9, 10, 11, 12},
+                interval = 0.05,
+                looping = false,
+                texture = 'character-pot-walk'
             }
         }
     }

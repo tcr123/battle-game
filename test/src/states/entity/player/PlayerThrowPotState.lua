@@ -1,11 +1,3 @@
---[[
-    GD50
-    Legend of Zelda
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-]]
-
 PlayerThrowPotState = Class{__includes = BaseState}
 
 function PlayerThrowPotState:init(player, dungeon)

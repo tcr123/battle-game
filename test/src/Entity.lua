@@ -1,17 +1,10 @@
---[[
-    GD50
-    Legend of Zelda
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-]]
 
 Entity = Class{}
 
 function Entity:init(def)
 
     -- in top-down games, there are four directions instead of two
-    self.direction = 'down'
+    self.direction = 'right'
     self.left = false
 
     self.animations = self:createAnimations(def.animations)

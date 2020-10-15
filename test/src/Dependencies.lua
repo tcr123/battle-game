@@ -28,7 +28,7 @@ require 'src/states/entity/EntityIdleState'
 require 'src/states/entity/EntityWalkState'
 
 require 'src/states/entity/player/PlayerIdleState'
-require 'src/states/entity/player/PlayerSwingSwordState'
+require 'src/states/entity/player/PlayerAttackState'
 require 'src/states/entity/player/PlayerWalkState'
 require 'src/states/entity/player/PlayerPickUpState'
 require 'src/states/entity/player/PlayerCarryState'
@@ -50,6 +50,14 @@ gTextures = {
     ['entities'] = love.graphics.newImage('graphics/entities.png'),
     ['enemy'] = love.graphics.newImage('graphics/enemy.png'),
     ['enemy-mirror'] = love.graphics.newImage('graphics/enemymirror.png'),
+    ['woody'] = love.graphics.newImage('graphics/woody/woody.png'),
+    ['woody-mirror'] = love.graphics.newImage('graphics/woody/woodymirror.png'),
+    ['ex'] = love.graphics.newImage('graphics/ex/ex.png'),
+    ['ex-mirror'] = love.graphics.newImage('graphics/ex/exmirror.png'),
+    ['dennis'] = love.graphics.newImage('graphics/davis/dennis.png'),
+    ['dennis-mirror'] = love.graphics.newImage('graphics/davis/dennismirror.png'),
+    ['davis'] = love.graphics.newImage('graphics/davis/davis.png'),
+    ['davis-mirror'] = love.graphics.newImage('graphics/davis/davismirror.png'),
     ['place1'] = love.graphics.newImage('graphics/place1.png')
 }
 
@@ -63,7 +71,15 @@ gFrames = {
     ['hearts'] = GenerateQuads(gTextures['hearts'], 16, 16),
     ['switches'] = GenerateQuads(gTextures['switches'], 16, 18),
     ['enemy'] = GenerateQuads(gTextures['enemy'], 41, 42),
-    ['enemy-mirror'] = GenerateQuads(gTextures['enemy-mirror'], 41, 42)
+    ['enemy-mirror'] = GenerateQuads(gTextures['enemy-mirror'], 41, 42),
+    ['woody'] = GenerateQuads(gTextures['woody'], 41, 42),
+    ['woody-mirror'] = GenerateQuads(gTextures['woody-mirror'], 41, 42),
+    ['ex'] = GenerateQuads(gTextures['ex'], 41.4, 42),
+    ['ex-mirror'] = GenerateQuads(gTextures['ex-mirror'], 41.4, 42),
+    ['dennis'] = GenerateQuads(gTextures['dennis'], 41.4, 42),
+    ['dennis-mirror'] = GenerateQuads(gTextures['dennis-mirror'], 41.4, 42),
+    ['davis'] = GenerateQuads(gTextures['davis'], 41.4, 42),
+    ['davis-mirror'] = GenerateQuads(gTextures['davis-mirror'], 41.4, 42),
 }
 
 gFonts = {
@@ -78,7 +94,7 @@ gFonts = {
 
 gSounds = {
     ['music'] = love.audio.newSource('sounds/music.mp3'),
-    ['sword'] = love.audio.newSource('sounds/sword.wav'),
+    ['attack'] = love.audio.newSource('sounds/sword.wav'),
     ['hit-enemy'] = love.audio.newSource('sounds/hit_enemy.wav'),
     ['hit-player'] = love.audio.newSource('sounds/hit_player.wav'),
     ['door'] = love.audio.newSource('sounds/door.wav'),

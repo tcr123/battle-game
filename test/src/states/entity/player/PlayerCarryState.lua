@@ -1,11 +1,3 @@
---[[
-    GD50
-    Legend of Zelda
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-]]
-
 PlayerCarryState = Class{__includes = EntityWalkState}
 
 function PlayerCarryState:init(player, dungeon)

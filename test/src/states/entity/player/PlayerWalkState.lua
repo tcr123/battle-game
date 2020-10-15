@@ -1,11 +1,3 @@
---[[
-    GD50
-    Legend of Zelda
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-]]
-
 PlayerWalkState = Class{__includes = EntityWalkState}
 
 function PlayerWalkState:init(player, dungeon)
@@ -86,7 +78,7 @@ function PlayerWalkState:update(dt)
     end
 
     if love.keyboard.wasPressed('space') then
-        self.entity:changeState('swing-sword')
+        self.entity:changeState('attack')
     end
 
     -- perform base collision detection against walls
