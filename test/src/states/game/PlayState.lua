@@ -2,8 +2,8 @@ PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
     self.player = Player {
-        animations = ENTITY_DEFS['player3'].animations,
-        walkSpeed = ENTITY_DEFS['player3'].walkSpeed,
+        animations = ENTITY_DEFS['player5'].animations,
+        walkSpeed = ENTITY_DEFS['player5'].walkSpeed,
         
         x = VIRTUAL_WIDTH / 2 - 8,
         y = VIRTUAL_HEIGHT / 2 - 11,
