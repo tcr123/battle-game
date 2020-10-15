@@ -50,9 +50,9 @@ end
 
 function Room:render()
     -- move through them convincingly
-    love.graphics.draw(gTextures['place1'], 0, 0, 0, 
-        VIRTUAL_WIDTH / gTextures['place1']:getWidth(),
-        VIRTUAL_HEIGHT / gTextures['place1']:getHeight())
+    love.graphics.draw(gTextures['place2'], 0, 0, 0, 
+        VIRTUAL_WIDTH / gTextures['place2']:getWidth(),
+        VIRTUAL_HEIGHT / gTextures['place2']:getHeight())
     
     if self.player then
         self.player:render()

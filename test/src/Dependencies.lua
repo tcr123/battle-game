@@ -58,7 +58,8 @@ gTextures = {
     ['dennis-mirror'] = love.graphics.newImage('graphics/davis/dennismirror.png'),
     ['davis'] = love.graphics.newImage('graphics/davis/davis.png'),
     ['davis-mirror'] = love.graphics.newImage('graphics/davis/davismirror.png'),
-    ['place1'] = love.graphics.newImage('graphics/place1.png')
+    ['place1'] = love.graphics.newImage('graphics/place1.png'),
+    ['place2'] = love.graphics.newImage('graphics/place2.png')
 }
 
 gFrames = {
