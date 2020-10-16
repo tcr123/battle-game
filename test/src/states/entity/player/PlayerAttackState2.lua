@@ -1,10 +1,9 @@
-PlayerAttackState = Class{__includes = BaseState}
+PlayerAttackState2 = Class{__includes = BaseState}
 
-function PlayerAttackState:init(player, dungeon)
+function PlayerAttackState2:init(player, dungeon)
     self.player = player
     self.dungeon = dungeon
-    self.attack = false
-    self.times = 1
+    self.times = 0
 
     -- render offset for spaced character sprite
     self.player.offsetY = 5
@@ -52,19 +51,19 @@ function PlayerAttackState:init(player, dungeon)
         end
     end
 
-    self.AttackHitbox = Hitbox(hitboxX, hitboxY, hitboxWidth, hitboxHeight)
+    self.AttackHitbox2 = Hitbox(hitboxX, hitboxY, hitboxWidth, hitboxHeight)
     if direction == 'left' or  direction == 'right' then
-        self.player:changeAnimation('attack-' .. self.player.direction)
+        self.player:changeAnimation('attack2-' .. self.player.direction)
     else
         if left == true then
-            self.player:changeAnimation('attack-left')
+            self.player:changeAnimation('attack2-left')
         else 
-            self.player:changeAnimation('attack-right')
+            self.player:changeAnimation('attack2-right')
         end
     end
 end
 
-function PlayerAttackState:enter(params)
+function PlayerAttackState2:enter(params)
     gSounds['attack']:stop()
     gSounds['attack']:play()
 
@@ -72,7 +71,7 @@ function PlayerAttackState:enter(params)
     self.player.currentAnimation:refresh()
 end
 
-function PlayerAttackState:update(dt)
+function PlayerAttackState2:update(dt)
     -- check if hitbox collides with any entities in the scene
     for k, entity in pairs(self.dungeon.currentRoom.entities) do
         if entity:collides(self.AttackHitbox) then
@@ -82,14 +81,14 @@ function PlayerAttackState:update(dt)
     end
 
     if love.keyboard.wasPressed('m') then
-        self.attack = true
+        self.times = 1
     end
 
     if self.player.currentAnimation.timesPlayed > 0.5 then
-        if self.attack == true then
+        if self.times == 1 then
+            self.times =0
             self.player.currentAnimation.timesPlayed = 0
-            self.player:changeState('attack2')
-            self.attack = false
+            self.player:changeState('attack3')
         else
             self.player.currentAnimation.timesPlayed = 0
             self.player:changeState('idle')
@@ -97,7 +96,7 @@ function PlayerAttackState:update(dt)
     end
 end
 
-function PlayerAttackState:render()
+function PlayerAttackState2:render()
     local anim = self.player.currentAnimation
     love.graphics.draw(gTextures[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()],
         math.floor(self.player.x - self.player.offsetX), math.floor(self.player.y - self.player.offsetY))
@@ -105,7 +104,7 @@ function PlayerAttackState:render()
     -- debug for player and hitbox collision rects
     -- love.graphics.setColor(255, 0, 255, 255)
     -- love.graphics.rectangle('line', self.player.x, self.player.y, self.player.width, self.player.height)
-    -- love.graphics.rectangle('line', self.AttackHitbox.x, self.AttackHitbox.y,
-    --     self.AttackHitbox.width, self.AttackHitbox.height)
+    -- love.graphics.rectangle('line', self.AttackHitbox2.x, self.AttackHitbox2.y,
+    --     self.AttackHitbox2.width, self.AttackHitbox2.height)
     -- love.graphics.setColor(255, 255, 255, 255)
 end
