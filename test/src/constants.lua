@@ -9,6 +9,7 @@ TILE_SIZE = 16
 --
 -- entity constants
 --
+TYPE = 1
 PLAYER_WALK_SPEED = 110
 PLAYER_WALK_SPEED_SCROLL = 50
 

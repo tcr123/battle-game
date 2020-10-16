@@ -1,9 +1,13 @@
 PlayState = Class{__includes = BaseState}
 
+function PlayState:enter(params)
+    
+end
+
 function PlayState:init()
     self.player = Player {
-        animations = ENTITY_DEFS['player5'].animations,
-        walkSpeed = ENTITY_DEFS['player5'].walkSpeed,
+        animations = ENTITY_DEFS['player'..TYPE].animations,
+        walkSpeed = ENTITY_DEFS['player'..TYPE].walkSpeed,
         
         x = VIRTUAL_WIDTH / 2 - 8,
         y = VIRTUAL_HEIGHT / 2 - 11,
@@ -30,10 +34,6 @@ function PlayState:init()
         ['throw'] = function() return PlayerThrowPotState(self.player, self.dungeon) end,
     }
     self.player:changeState('idle')
-end
-
-function PlayState:enter(params)
-
 end
 
 function PlayState:update(dt)
@@ -68,4 +68,6 @@ function PlayState:render()
         
         healthLeft = healthLeft - 2
     end
+
+    love.graphics.printf('Level: ' .. tostring(TYPE), 20, 24, 182, 'center')
 end

@@ -1,6 +1,6 @@
 
 ENTITY_DEFS = {
-    ['player1'] = {
+    ['enemy'] = {
         walkSpeed = PLAYER_WALK_SPEED,
         animations = {
             ['walk-left'] = {
@@ -99,7 +99,7 @@ ENTITY_DEFS = {
             }
         }
     },
-    ['player2'] = {
+    ['player1'] = {
         walkSpeed = PLAYER_WALK_SPEED,
         animations = {
             ['walk-left'] = {
@@ -198,7 +198,7 @@ ENTITY_DEFS = {
             }
         }
     },
-    ['player3'] = {
+    ['player2'] = {
         walkSpeed = PLAYER_WALK_SPEED,
         animations = {
             ['walk-left'] = {
@@ -297,7 +297,7 @@ ENTITY_DEFS = {
             }
         }
     },
-    ['player4'] = {
+    ['player3'] = {
         walkSpeed = PLAYER_WALK_SPEED,
         animations = {
             ['walk-left'] = {
@@ -396,7 +396,7 @@ ENTITY_DEFS = {
             }
         }
     },
-    ['player5'] = {
+    ['player4'] = {
         walkSpeed = PLAYER_WALK_SPEED,
         animations = {
             ['walk-left'] = {

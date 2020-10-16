@@ -35,8 +35,16 @@ require 'src/states/entity/player/PlayerCarryState'
 require 'src/states/entity/player/PlayerThrowPotState'
 
 require 'src/states/game/GameOverState'
+require 'src/states/game/SelectState'
 require 'src/states/game/PlayState'
 require 'src/states/game/StartState'
+
+gImage ={
+    ['player1'] = love.graphics.newImage('graphics/select/woody.bmp'),
+    ['player2'] = love.graphics.newImage('graphics/select/ex.bmp'),
+    ['player3'] = love.graphics.newImage('graphics/select/dennis.bmp'),
+    ['player4'] = love.graphics.newImage('graphics/select/davis.jpg'),
+}
 
 gTextures = {
     ['tiles'] = love.graphics.newImage('graphics/tilesheet.png'),
@@ -59,7 +67,8 @@ gTextures = {
     ['davis'] = love.graphics.newImage('graphics/davis/davis.png'),
     ['davis-mirror'] = love.graphics.newImage('graphics/davis/davismirror.png'),
     ['place1'] = love.graphics.newImage('graphics/place1.png'),
-    ['place2'] = love.graphics.newImage('graphics/place2.png')
+    ['place2'] = love.graphics.newImage('graphics/place2.png'),
+    ['arrows'] = love.graphics.newImage('graphics/select/arrows.png')
 }
 
 gFrames = {
@@ -81,6 +90,7 @@ gFrames = {
     ['dennis-mirror'] = GenerateQuads(gTextures['dennis-mirror'], 41.4, 42),
     ['davis'] = GenerateQuads(gTextures['davis'], 41.4, 42),
     ['davis-mirror'] = GenerateQuads(gTextures['davis-mirror'], 41.4, 42),
+    ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24),
 }
 
 gFonts = {
@@ -100,5 +110,8 @@ gSounds = {
     ['hit-player'] = love.audio.newSource('sounds/hit_player.wav'),
     ['door'] = love.audio.newSource('sounds/door.wav'),
     ['pick-up'] = love.audio.newSource('sounds/pickup.wav'),
-    ['break'] = love.audio.newSource('sounds/break.wav')
+    ['break'] = love.audio.newSource('sounds/break.wav'),
+    ['no-select'] = love.audio.newSource('sounds/no-select.wav'),
+    ['select'] = love.audio.newSource('sounds/select.wav'),
+    ['confirm'] = love.audio.newSource('sounds/confirm.wav')
 }
