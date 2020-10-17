@@ -13,7 +13,7 @@ function PlayState:init()
         y = VIRTUAL_HEIGHT / 2 - 11,
         
         width = 41,
-        height = 42,
+        height = 41,
 
         -- one heart == 2 health
         health = 6,
@@ -30,7 +30,9 @@ function PlayState:init()
         ['idle'] = function() return PlayerIdleState(self.player) end,
         ['attack'] = function() return PlayerAttackState(self.player, self.dungeon) end,
         ['attack2'] = function() return PlayerAttackState2(self.player, self.dungeon) end,
-        ['attack3'] = function() return PlayerAttackState3(self.player, self.dungeon) end
+        ['attack3'] = function() return PlayerAttackState3(self.player, self.dungeon) end,
+        ['jump'] = function() return PlayerJumpState(self.player) end,
+        ['power1'] = function() return PlayerPower1State(self.player, self.dungeon) end
     }
     self.player:changeState('idle')
 end

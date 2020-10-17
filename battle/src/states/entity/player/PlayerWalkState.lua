@@ -17,7 +17,7 @@ function PlayerWalkState:update(dt)
 
         -- move in 135 degree direction
         if love.keyboard.isDown('up') then
-            self.entity.y = math.max(MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height / 2, self.entity.y - PLAYER_WALK_SPEED_SCROLL * dt)
+            self.entity.y = math.max(MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height, self.entity.y - PLAYER_WALK_SPEED_SCROLL * dt)
 
         -- move in 225 degree direction
         elseif love.keyboard.isDown('down') then
@@ -38,7 +38,7 @@ function PlayerWalkState:update(dt)
 
         -- move in 45 degree direction
         if love.keyboard.isDown('up') then
-            self.entity.y = math.max(MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height / 2, self.entity.y - PLAYER_WALK_SPEED_SCROLL * dt)
+            self.entity.y = math.max(MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height, self.entity.y - PLAYER_WALK_SPEED_SCROLL * dt)
 
         -- move in 315 degree direction
         elseif love.keyboard.isDown('down') then
@@ -77,8 +77,12 @@ function PlayerWalkState:update(dt)
         self.entity:changeState('idle')
     end
 
-    if love.keyboard.wasPressed('space') then
+    if love.keyboard.wasPressed('m') then
         self.entity:changeState('attack')
+    end
+
+    if love.keyboard.wasPressed('space') then
+        self.entity:changeState('jump')
     end
 
     -- perform base collision detection against walls

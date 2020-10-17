@@ -19,4 +19,8 @@ function PlayerIdleState:update(dt)
     if love.keyboard.wasPressed('m') then
         self.entity:changeState('attack')
     end
+
+    if love.keyboard.wasPressed('space') then
+        self.entity:changeState('jump')
+    end
 end

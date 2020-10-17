@@ -56,6 +56,26 @@ ENTITY_DEFS = {
                 interval = 0.07,
                 looping = false,
                 texture = 'enemy'
+            },
+            ['jump-left'] = {
+                frames = {68, 68},
+                interval = 0.10,
+                texture = 'enemy-mirror'
+            },
+            ['jump-right'] = {
+                frames = {63, 63},
+                interval = 0.10,
+                texture = 'enemy'
+            },
+            ['jump-walk-left'] = {
+                frames = {67, 67},
+                interval = 0.10,
+                texture = 'enemy-mirror'
+            },
+            ['jump-walk-right'] = {
+                frames = {64, 64},
+                interval = 0.10,
+                texture = 'enemy'
             }
         }
     },
@@ -114,6 +134,26 @@ ENTITY_DEFS = {
                 frames = {17, 18, 20},
                 interval = 0.14,
                 looping = false,
+                texture = 'woody'
+            },
+            ['jump-left'] = {
+                frames = {68, 68},
+                interval = 0.10,
+                texture = 'woody-mirror'
+            },
+            ['jump-right'] = {
+                frames = {63, 63},
+                interval = 0.10,
+                texture = 'woody'
+            },
+            ['jump-walk-left'] = {
+                frames = {67, 67},
+                interval = 0.10,
+                texture = 'woody-mirror'
+            },
+            ['jump-walk-right'] = {
+                frames = {64, 64},
+                interval = 0.10,
                 texture = 'woody'
             }
         }
@@ -174,6 +214,26 @@ ENTITY_DEFS = {
                 interval = 0.14,
                 looping = false,
                 texture = 'ex'
+            },
+            ['jump-left'] = {
+                frames = {68, 68},
+                interval = 0.10,
+                texture = 'ex-mirror'
+            },
+            ['jump-right'] = {
+                frames = {63, 63},
+                interval = 0.10,
+                texture = 'ex'
+            },
+            ['jump-walk-left'] = {
+                frames = {67, 67},
+                interval = 0.10,
+                texture = 'ex-mirror'
+            },
+            ['jump-walk-right'] = {
+                frames = {64, 64},
+                interval = 0.10,
+                texture = 'ex'
             }
         }
     },  
@@ -233,6 +293,26 @@ ENTITY_DEFS = {
                 interval = 0.14,
                 looping = false,
                 texture = 'dennis'
+            },
+            ['jump-left'] = {
+                frames = {68, 68},
+                interval = 0.10,
+                texture = 'dennis-mirror'
+            },
+            ['jump-right'] = {
+                frames = {63, 63},
+                interval = 0.10,
+                texture = 'dennis'
+            },
+            ['jump-walk-left'] = {
+                frames = {67, 67},
+                interval = 0.10,
+                texture = 'dennis-mirror'
+            },
+            ['jump-walk-right'] = {
+                frames = {64, 64},
+                interval = 0.10,
+                texture = 'dennis'
             }
         }
     },
@@ -291,6 +371,26 @@ ENTITY_DEFS = {
                 frames = {17, 18, 20},
                 interval = 0.14,
                 looping = false,
+                texture = 'davis'
+            },
+            ['jump-left'] = {
+                frames = {68, 68},
+                interval = 0.10,
+                texture = 'davis-mirror'
+            },
+            ['jump-right'] = {
+                frames = {63, 63},
+                interval = 0.10,
+                texture = 'davis'
+            },
+            ['jump-walk-left'] = {
+                frames = {67, 67},
+                interval = 0.10,
+                texture = 'davis-mirror'
+            },
+            ['jump-walk-right'] = {
+                frames = {64, 64},
+                interval = 0.10,
                 texture = 'davis'
             }
         }

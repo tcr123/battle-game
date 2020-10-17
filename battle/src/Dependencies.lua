@@ -32,6 +32,7 @@ require 'src/states/entity/player/PlayerAttackState'
 require 'src/states/entity/player/PlayerAttackState2'
 require 'src/states/entity/player/PlayerAttackState3'
 require 'src/states/entity/player/PlayerWalkState'
+require 'src/states/entity/player/PlayerJumpState'
 
 require 'src/states/game/GameOverState'
 require 'src/states/game/SelectState'
@@ -80,15 +81,15 @@ gFrames = {
     ['hearts'] = GenerateQuads(gTextures['hearts'], 16, 16),
     ['switches'] = GenerateQuads(gTextures['switches'], 16, 18),
     ['enemy'] = GenerateQuads(gTextures['enemy'], 41, 42),
-    ['enemy-mirror'] = GenerateQuads(gTextures['enemy-mirror'], 41, 42),
-    ['woody'] = GenerateQuads(gTextures['woody'], 41, 42),
-    ['woody-mirror'] = GenerateQuads(gTextures['woody-mirror'], 41, 42),
-    ['ex'] = GenerateQuads(gTextures['ex'], 41.4, 42),
-    ['ex-mirror'] = GenerateQuads(gTextures['ex-mirror'], 41.4, 42),
-    ['dennis'] = GenerateQuads(gTextures['dennis'], 41.4, 42),
-    ['dennis-mirror'] = GenerateQuads(gTextures['dennis-mirror'], 41.4, 42),
-    ['davis'] = GenerateQuads(gTextures['davis'], 41.4, 42),
-    ['davis-mirror'] = GenerateQuads(gTextures['davis-mirror'], 41.4, 42),
+    ['enemy-mirror'] = GenerateQuads(gTextures['enemy-mirror'], 41, 41),
+    ['woody'] = GenerateQuads(gTextures['woody'], 41, 41),
+    ['woody-mirror'] = GenerateQuads(gTextures['woody-mirror'], 41, 41),
+    ['ex'] = GenerateQuads(gTextures['ex'], 41.4, 41),
+    ['ex-mirror'] = GenerateQuads(gTextures['ex-mirror'], 41.4, 41),
+    ['dennis'] = GenerateQuads(gTextures['dennis'], 41.4, 41),
+    ['dennis-mirror'] = GenerateQuads(gTextures['dennis-mirror'], 41.4, 41),
+    ['davis'] = GenerateQuads(gTextures['davis'], 41.4, 41),
+    ['davis-mirror'] = GenerateQuads(gTextures['davis-mirror'], 41.4, 41),
     ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24),
 }
 

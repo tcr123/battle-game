@@ -36,8 +36,8 @@ function EntityWalkState:update(dt)
     elseif self.entity.direction == 'up' then
         self.entity.y = self.entity.y - self.entity.walkSpeed * dt
 
-        if self.entity.y <= MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height / 2 then 
-            self.entity.y = MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height / 2
+        if self.entity.y <= MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height then 
+            self.entity.y = MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height
             self.bumped = true
         end
     elseif self.entity.direction == 'down' then
