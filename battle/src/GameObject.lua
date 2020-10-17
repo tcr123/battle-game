@@ -28,6 +28,8 @@ function GameObject:init(def, x, y)
     self.consumable = def.consumable
     self.pickup = def.pickup
     self.moving = def.moving
+    self.movingleft = def.movingleft
+    self.movingright = def.movingright
     self.directionThrow = nil
     self.destination = TILE_SIZE * 4
 end
@@ -85,6 +87,14 @@ function GameObject:update(dt)
                 self.pickup = false
             end
         end
+    end
+
+    if self.movingleft == true then
+        self.x = self.x - self.dx * 3 * dt
+    end
+
+    if self.movingright == true then
+        self.x = self.x + self.dx * 2 * dt
     end
 end
 

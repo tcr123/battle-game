@@ -33,6 +33,7 @@ require 'src/states/entity/player/PlayerAttackState2'
 require 'src/states/entity/player/PlayerAttackState3'
 require 'src/states/entity/player/PlayerWalkState'
 require 'src/states/entity/player/PlayerJumpState'
+require 'src/states/entity/player/PlayerPower1State'
 
 require 'src/states/game/GameOverState'
 require 'src/states/game/SelectState'
@@ -56,6 +57,7 @@ gTextures = {
     ['hearts'] = love.graphics.newImage('graphics/hearts.png'),
     ['switches'] = love.graphics.newImage('graphics/switches.png'),
     ['entities'] = love.graphics.newImage('graphics/entities.png'),
+
     ['enemy'] = love.graphics.newImage('graphics/enemy.png'),
     ['enemy-mirror'] = love.graphics.newImage('graphics/enemymirror.png'),
     ['woody'] = love.graphics.newImage('graphics/woody/woody.png'),
@@ -67,8 +69,23 @@ gTextures = {
     ['davis'] = love.graphics.newImage('graphics/davis/davis.png'),
     ['davis-mirror'] = love.graphics.newImage('graphics/davis/davismirror.png'),
     ['place1'] = love.graphics.newImage('graphics/place1.png'),
+
     ['place2'] = love.graphics.newImage('graphics/place2.png'),
-    ['arrows'] = love.graphics.newImage('graphics/select/arrows.png')
+    ['arrows'] = love.graphics.newImage('graphics/select/arrows.png'),
+
+    ['davis_ball'] = love.graphics.newImage('graphics/davis/davis_ball.png'),
+    ['davis_ballmirror'] = love.graphics.newImage('graphics/davis/davis_ballmirror.png'),
+    ['dennis_ball'] = love.graphics.newImage('graphics/davis/dennis_ball.png'),
+    ['dennis_ballmirror'] = love.graphics.newImage('graphics/davis/dennis_ballmirror.png'),
+    ['flare_ball'] = love.graphics.newImage('graphics/woody/Flare_ball.png'),
+    ['flare_ballmirror'] = love.graphics.newImage('graphics/woody/Flare_ballmirror.png'),
+
+    ['woody2'] = love.graphics.newImage('graphics/woody/woody2.png'),
+    ['woody2-mirror'] = love.graphics.newImage('graphics/woody/woody2mirror.png'),
+    ['dennis2'] = love.graphics.newImage('graphics/davis/dennis2.png'),
+    ['dennis2-mirror'] = love.graphics.newImage('graphics/davis/dennis2mirror.png'),
+    ['davis2'] = love.graphics.newImage('graphics/davis/davis2.png'),
+    ['davis2-mirror'] = love.graphics.newImage('graphics/davis/davis2mirror.png')
 }
 
 gFrames = {
@@ -80,17 +97,30 @@ gFrames = {
     ['entities'] = GenerateQuads(gTextures['entities'], 16, 16),
     ['hearts'] = GenerateQuads(gTextures['hearts'], 16, 16),
     ['switches'] = GenerateQuads(gTextures['switches'], 16, 18),
+
     ['enemy'] = GenerateQuads(gTextures['enemy'], 41, 42),
     ['enemy-mirror'] = GenerateQuads(gTextures['enemy-mirror'], 41, 41),
     ['woody'] = GenerateQuads(gTextures['woody'], 41, 41),
     ['woody-mirror'] = GenerateQuads(gTextures['woody-mirror'], 41, 41),
-    ['ex'] = GenerateQuads(gTextures['ex'], 41.4, 41),
-    ['ex-mirror'] = GenerateQuads(gTextures['ex-mirror'], 41.4, 41),
     ['dennis'] = GenerateQuads(gTextures['dennis'], 41.4, 41),
     ['dennis-mirror'] = GenerateQuads(gTextures['dennis-mirror'], 41.4, 41),
     ['davis'] = GenerateQuads(gTextures['davis'], 41.4, 41),
     ['davis-mirror'] = GenerateQuads(gTextures['davis-mirror'], 41.4, 41),
+
     ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24),
+    ['davis_ball'] = GenerateQuads(gTextures['davis_ball'], 69, 34),
+    ['davis_ballmirror'] = GenerateQuads(gTextures['davis_ballmirror'], 69, 34),
+    ['dennis_ball'] = GenerateQuads(gTextures['dennis_ball'], 57, 44),
+    ['dennis_ballmirror'] = GenerateQuads(gTextures['dennis_ballmirror'], 57, 44),
+    ['flare_ball'] = GenerateQuads(gTextures['flare_ball'], 60, 60),
+    ['flare_ballmirror'] = GenerateQuads(gTextures['flare_ballmirror'], 60, 60),
+
+    ['woody2'] = GenerateQuads(gTextures['woody2'], 41, 41),
+    ['woody2-mirror'] = GenerateQuads(gTextures['woody2-mirror'], 41, 41),
+    ['dennis2'] = GenerateQuads(gTextures['dennis2'], 41.4, 41),
+    ['dennis2-mirror'] = GenerateQuads(gTextures['dennis2-mirror'], 41.4, 41),
+    ['davis2'] = GenerateQuads(gTextures['davis2'], 41.4, 41),
+    ['davis2-mirror'] = GenerateQuads(gTextures['davis2-mirror'], 41.4, 41)
 }
 
 gFonts = {

@@ -28,7 +28,7 @@ function Entity:init(def)
     self.invulnerableDuration = 0
     self.invulnerableTimer = 0
     self.flashTimer = 0
-
+    
     self.dead = false
 end
 

@@ -155,6 +155,16 @@ ENTITY_DEFS = {
                 frames = {64, 64},
                 interval = 0.10,
                 texture = 'woody'
+            },
+            ['power1-left'] = {
+                frames = {7, 6, 5, 4, 3, 2, 1},
+                interval = 0.08,
+                texture = 'woody2-mirror'
+            },
+            ['power1-right'] = {
+                frames = {4, 5, 6, 7, 8, 9, 10},
+                interval = 0.08,
+                texture = 'woody2'
             }
         }
     },
@@ -313,6 +323,16 @@ ENTITY_DEFS = {
                 frames = {64, 64},
                 interval = 0.10,
                 texture = 'dennis'
+            },
+            ['power1-left'] = {
+                frames = {7, 6, 5, 4, 3, 2, 1},
+                interval = 0.08,
+                texture = 'dennis2-mirror'
+            },
+            ['power1-right'] = {
+                frames = {4, 5, 6, 7, 8, 9, 10},
+                interval = 0.08,
+                texture = 'dennis2'
             }
         }
     },
@@ -392,6 +412,16 @@ ENTITY_DEFS = {
                 frames = {64, 64},
                 interval = 0.10,
                 texture = 'davis'
+            },
+            ['power1-left'] = {
+                frames = {7, 6, 5, 4, 3, 2, 1},
+                interval = 0.08,
+                texture = 'davis2-mirror'
+            },
+            ['power1-right'] = {
+                frames = {4, 5, 6, 7, 8, 9, 10},
+                interval = 0.08,
+                texture = 'davis2'
             }
         }
     }

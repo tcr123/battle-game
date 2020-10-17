@@ -81,6 +81,10 @@ function PlayerWalkState:update(dt)
         self.entity:changeState('attack')
     end
 
+    if love.keyboard.wasPressed('n') then
+        self.entity:changeState('power1')
+    end
+
     if love.keyboard.wasPressed('space') then
         self.entity:changeState('jump')
     end
