@@ -17,6 +17,7 @@ require 'src/Hitbox'
 require 'src/Player'
 require 'src/StateMachine'
 require 'src/Util'
+require 'src/Ball'
 
 require 'src/world/Doorway'
 require 'src/world/Dungeon'
@@ -73,19 +74,23 @@ gTextures = {
     ['place2'] = love.graphics.newImage('graphics/place2.png'),
     ['arrows'] = love.graphics.newImage('graphics/select/arrows.png'),
 
-    ['davis_ball'] = love.graphics.newImage('graphics/davis/davis_ball.png'),
-    ['davis_ballmirror'] = love.graphics.newImage('graphics/davis/davis_ballmirror.png'),
-    ['dennis_ball'] = love.graphics.newImage('graphics/davis/dennis_ball.png'),
-    ['dennis_ballmirror'] = love.graphics.newImage('graphics/davis/dennis_ballmirror.png'),
-    ['flare_ball'] = love.graphics.newImage('graphics/woody/Flare_ball.png'),
-    ['flare_ballmirror'] = love.graphics.newImage('graphics/woody/Flare_ballmirror.png'),
+    ['davis-ball'] = love.graphics.newImage('graphics/davis/davis_ball.png'),
+    ['davis-ballmirror'] = love.graphics.newImage('graphics/davis/davis_ballmirror.png'),
+    ['dennis-ball'] = love.graphics.newImage('graphics/davis/dennis_ball.png'),
+    ['dennis-ballmirror'] = love.graphics.newImage('graphics/davis/dennis_ballmirror.png'),
+    ['flare-ball'] = love.graphics.newImage('graphics/woody/Flare_ball.png'),
+    ['flare-ballmirror'] = love.graphics.newImage('graphics/woody/Flare_ballmirror.png'),
+    ['ex-ball'] = love.graphics.newImage('graphics/ex/exball.png'),
+    ['ex-ballmirror'] = love.graphics.newImage('graphics/ex/exballmirror.png'),
 
     ['woody2'] = love.graphics.newImage('graphics/woody/woody2.png'),
     ['woody2-mirror'] = love.graphics.newImage('graphics/woody/woody2mirror.png'),
     ['dennis2'] = love.graphics.newImage('graphics/davis/dennis2.png'),
     ['dennis2-mirror'] = love.graphics.newImage('graphics/davis/dennis2mirror.png'),
     ['davis2'] = love.graphics.newImage('graphics/davis/davis2.png'),
-    ['davis2-mirror'] = love.graphics.newImage('graphics/davis/davis2mirror.png')
+    ['davis2-mirror'] = love.graphics.newImage('graphics/davis/davis2mirror.png'),
+    ['ex2'] = love.graphics.newImage('graphics/ex/ex2.png'),
+    ['ex2-mirror'] = love.graphics.newImage('graphics/ex/ex2mirror.png')
 }
 
 gFrames = {
@@ -106,21 +111,27 @@ gFrames = {
     ['dennis-mirror'] = GenerateQuads(gTextures['dennis-mirror'], 41.4, 41),
     ['davis'] = GenerateQuads(gTextures['davis'], 41.4, 41),
     ['davis-mirror'] = GenerateQuads(gTextures['davis-mirror'], 41.4, 41),
+    ['ex'] = GenerateQuads(gTextures['ex'], 41.4, 41),
+    ['ex-mirror'] = GenerateQuads(gTextures['ex-mirror'], 41.4, 41),
 
     ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24),
-    ['davis_ball'] = GenerateQuads(gTextures['davis_ball'], 69, 34),
-    ['davis_ballmirror'] = GenerateQuads(gTextures['davis_ballmirror'], 69, 34),
-    ['dennis_ball'] = GenerateQuads(gTextures['dennis_ball'], 57, 44),
-    ['dennis_ballmirror'] = GenerateQuads(gTextures['dennis_ballmirror'], 57, 44),
-    ['flare_ball'] = GenerateQuads(gTextures['flare_ball'], 60, 60),
-    ['flare_ballmirror'] = GenerateQuads(gTextures['flare_ballmirror'], 60, 60),
+    ['davis-ball'] = GenerateQuads(gTextures['davis-ball'], 59.25, 34),
+    ['davis-ballmirror'] = GenerateQuads(gTextures['davis-ballmirror'], 59.25, 34),
+    ['dennis-ball'] = GenerateQuads(gTextures['dennis-ball'], 57, 33),
+    ['dennis-ballmirror'] = GenerateQuads(gTextures['dennis-ballmirror'], 57, 33),
+    ['flare-ball'] = GenerateQuads(gTextures['flare-ball'], 40, 40),
+    ['flare-ballmirror'] = GenerateQuads(gTextures['flare-ballmirror'], 40, 40),
+    ['ex-ball'] = GenerateQuads(gTextures['ex-ball'], 34, 30),
+    ['ex-ballmirror'] = GenerateQuads(gTextures['ex-ballmirror'], 34, 30),
 
     ['woody2'] = GenerateQuads(gTextures['woody2'], 41, 41),
     ['woody2-mirror'] = GenerateQuads(gTextures['woody2-mirror'], 41, 41),
     ['dennis2'] = GenerateQuads(gTextures['dennis2'], 41.4, 41),
     ['dennis2-mirror'] = GenerateQuads(gTextures['dennis2-mirror'], 41.4, 41),
     ['davis2'] = GenerateQuads(gTextures['davis2'], 41.4, 41),
-    ['davis2-mirror'] = GenerateQuads(gTextures['davis2-mirror'], 41.4, 41)
+    ['davis2-mirror'] = GenerateQuads(gTextures['davis2-mirror'], 41.4, 41),
+    ['ex2'] = GenerateQuads(gTextures['ex2'], 41.4, 40.5),
+    ['ex2-mirror'] = GenerateQuads(gTextures['ex2-mirror'], 41.4, 40.5)
 }
 
 gFonts = {

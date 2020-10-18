@@ -1,3 +1,11 @@
+--[[
+    GD50
+    Legend of Zelda
+
+    Author: Colton Ogden
+    cogden@cs50.harvard.edu
+]]
+
 Dungeon = Class{}
 
 function Dungeon:init(player)

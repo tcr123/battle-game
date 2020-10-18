@@ -244,6 +244,16 @@ ENTITY_DEFS = {
                 frames = {64, 64},
                 interval = 0.10,
                 texture = 'ex'
+            },
+            ['power1-left'] = {
+                frames = {20, 19, 18, 17, 16, 15},
+                interval = 0.09,
+                texture = 'ex2-mirror'
+            },
+            ['power1-right'] = {
+                frames = {11, 12, 13, 14, 15, 16},
+                interval = 0.09,
+                texture = 'ex2'
             }
         }
     },  

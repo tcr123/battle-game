@@ -88,14 +88,6 @@ function GameObject:update(dt)
             end
         end
     end
-
-    if self.movingleft == true then
-        self.x = self.x - self.dx * 3 * dt
-    end
-
-    if self.movingright == true then
-        self.x = self.x + self.dx * 2 * dt
-    end
 end
 
 function GameObject:collides(target)

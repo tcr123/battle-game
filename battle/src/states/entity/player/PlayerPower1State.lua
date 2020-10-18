@@ -47,4 +47,11 @@ function PlayerPower1State:render()
     local anim = self.player.currentAnimation
     love.graphics.draw(gTextures[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()],
         math.floor(self.player.x - self.player.offsetX), math.floor(self.player.y - self.player.offsetY))
+
+        -- debug for player and hitbox collision rects
+    -- love.graphics.setColor(255, 0, 255, 255)
+    -- love.graphics.rectangle('line', self.player.x, self.player.y, self.player.width, self.player.height)
+    -- love.graphics.rectangle('line', self.AttackHitbox3.x, self.AttackHitbox3.y,
+    --     self.AttackHitbox3.width, self.AttackHitbox3.height)
+    -- love.graphics.setColor(255, 255, 255, 255)
 end
