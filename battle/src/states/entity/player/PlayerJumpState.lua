@@ -45,20 +45,17 @@ function PlayerJumpState:update(dt)
         end
     end
 
+
     if love.keyboard.isDown('left') then
         self.player.direction = 'left'
-    elseif love.keyboard.isDown('right') then
-        self.player.direction = 'right'
-    end
-
-    if self.player.direction == 'left' then
         self.player.x = self.player.x - self.player.walkSpeed * dt
 
         if self.player.x <= MAP_RENDER_OFFSET_X - (TILE_SIZE * 2) then 
             self.player.x = MAP_RENDER_OFFSET_X - (TILE_SIZE * 2)
             self.bumped = true
         end
-    elseif self.player.direction == 'right' then
+    elseif love.keyboard.isDown('right') then
+        self.player.direction = 'right'
         self.player.x = self.player.x + self.player.walkSpeed * dt
 
         if self.player.x + self.player.width >= VIRTUAL_WIDTH + 12 then

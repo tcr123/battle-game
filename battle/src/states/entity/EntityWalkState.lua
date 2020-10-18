@@ -2,7 +2,7 @@ EntityWalkState = Class{__includes = BaseState}
 
 function EntityWalkState:init(entity, dungeon)
     self.entity = entity
-    self.entity:changeAnimation('walk-down')
+    self.entity:changeAnimation('walk-left')
 
     self.dungeon = dungeon
 
@@ -55,7 +55,7 @@ end
 
 function EntityWalkState:processAI(params, dt)
     local room = params.room
-    local directions = {'left', 'right', 'up', 'down'}
+    local directions = {'left', 'right'}
 
     if self.moveDuration == 0 or self.bumped then
         

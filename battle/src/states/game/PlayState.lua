@@ -16,7 +16,7 @@ function PlayState:init()
         height = 41,
 
         -- one heart == 2 health
-        health = 6,
+        health = 10,
 
         -- rendering and collision offset for spaced sprites
         offsetY = 5
@@ -34,6 +34,7 @@ function PlayState:init()
         ['jump'] = function() return PlayerJumpState(self.player) end,
         ['power1'] = function() return PlayerPower1State(self.player, self.dungeon) end
     }
+
     self.player:changeState('idle')
 end
 
@@ -55,7 +56,7 @@ function PlayState:render()
     local healthLeft = self.player.health
     local heartFrame = 1
 
-    for i = 1, 3 do
+    for i = 1, 5 do
         if healthLeft > 1 then
             heartFrame = 5
         elseif healthLeft == 1 then

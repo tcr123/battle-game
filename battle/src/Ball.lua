@@ -82,14 +82,14 @@ function Ball:render()
             self.x, self.y)
         elseif self.direction == 'right' then
             love.graphics.draw(gTextures['flare-ball'], gFrames['flare-ball'][1],
-            self.x + 40, self.y)
+            self.x + 4, self.y)
         else
             if self.left == true then
                 love.graphics.draw(gTextures['flare-ballmirror'], gFrames['flare-ballmirror'][4],
                 self.x, self.y)
             else
                 love.graphics.draw(gTextures['flare-ball'], gFrames['flare-ball'][1],
-                self.x + 40, self.y)
+                self.x + 4, self.y)
             end
         end
     elseif self.type == 2 then
@@ -98,14 +98,14 @@ function Ball:render()
             self.x, self.y)
         elseif self.direction == 'right' then
             love.graphics.draw(gTextures['ex-ball'], gFrames['ex-ball'][1],
-            self.x + 40, self.y)
+            self.x + 4, self.y)
         else
             if self.left == true then
                 love.graphics.draw(gTextures['ex-ballmirror'], gFrames['ex-ballmirror'][4],
                 self.x, self.y)
             else
                 love.graphics.draw(gTextures['ex-ball'], gFrames['ex-ball'][1],
-                self.x + 40, self.y)
+                self.x + 4, self.y)
             end
         end
     elseif self.type == 3 then
@@ -114,14 +114,14 @@ function Ball:render()
                 self.x, self.y)
         elseif self.direction == 'right' then
             love.graphics.draw(gTextures['dennis-ball'], gFrames['dennis-ball'][1],
-                self.x + 40, self.y)
+                self.x + 4, self.y)
         else
             if self.left == true then
                 love.graphics.draw(gTextures['dennis-ballmirror'], gFrames['dennis-ballmirror'][4],
                 self.x, self.y)
             else
                 love.graphics.draw(gTextures['dennis-ball'], gFrames['dennis-ball'][1],
-                self.x + 40, self.y)
+                self.x + 4, self.y)
             end
         end
     elseif self.type == 4 then
@@ -130,14 +130,14 @@ function Ball:render()
                 self.x, self.y)
         elseif self.direction == 'right' then
             love.graphics.draw(gTextures['davis-ball'], gFrames['davis-ball'][1],
-                self.x + 40, self.y)
+                self.x + 4, self.y)
         else
             if self.left == true then
                 love.graphics.draw(gTextures['davis-ballmirror'], gFrames['davis-ballmirror'][4],
                 self.x, self.y)
             else
                 love.graphics.draw(gTextures['davis-ball'], gFrames['davis-ball'][1],
-                self.x + 40, self.y)
+                self.x + 4, self.y)
             end
         end
     end

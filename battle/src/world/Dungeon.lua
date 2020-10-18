@@ -1,16 +1,8 @@
---[[
-    GD50
-    Legend of Zelda
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-]]
 
 Dungeon = Class{}
 
 function Dungeon:init(player)
     self.player = player
-
     self.rooms = {}
 
     -- current room we're operating in

@@ -31,7 +31,30 @@ end
     Randomly creates an assortment of enemies for the player to fight.
 ]]
 function Room:generateEntities()
-    
+    for i = 1, 2 do
+        table.insert(self.entities, Entity {
+            animations = ENTITY_DEFS['enemy'].animations,
+            walkSpeed = ENTITY_DEFS['enemy'].walkSpeed or 20,
+
+            -- ensure X and Y are within bounds of the map
+            x = math.random(MAP_RENDER_OFFSET_X + TILE_SIZE,
+                VIRTUAL_WIDTH - TILE_SIZE * 2 - 41),
+            y = math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE,
+                VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE - 41),
+            
+            width = 41,
+            height = 41,
+
+            health = 3
+        })
+
+        self.entities[i].stateMachine = StateMachine {
+            ['walk'] = function() return EntityWalkState(self.entities[i]) end,
+            ['idle'] = function() return EntityIdleState(self.entities[i]) end
+        }
+
+        self.entities[i]:changeState('walk')
+    end
 end
 
 --[[
@@ -46,7 +69,7 @@ function Room:update(dt)
 
     if love.keyboard.wasPressed('n') and self.interval > 0.5  then
         self.interval = 0
-        table.insert(self.objects, Ball{
+        table.insert(self.objects, Ball {
             x = self.player.x,
             y = self.player.y,
             direction = self.player.direction,
@@ -54,6 +77,40 @@ function Room:update(dt)
         })
     else
         self.interval = self.interval + dt
+    end
+
+    for i = #self.entities, 1, -1 do
+        local entity = self.entities[i]
+
+        -- remove entity from the table if health is <= 0
+        if entity.health <= 0 then
+            entity.dead = true
+            if self.spawnHeart == false then
+                if self.posibility == 1 then
+                    table.insert(self.objects, GameObject(
+                        GAME_OBJECT_DEFS['heart'],
+                        entity.x, entity.y
+                    ))
+
+                    self.spawnHeart = true
+                end
+            end
+
+        elseif not entity.dead then
+            entity:processAI({room = self}, dt)
+            entity:update(dt)
+        end
+
+        -- collision between the player and entities in the room
+        if not entity.dead and self.player:collides(entity) and not self.player.invulnerable then
+            gSounds['hit-player']:play()
+            self.player:damage(1)
+            self.player:goInvulnerable(1.5)
+
+            if self.player.health == 0 then
+                gStateMachine:change('game-over')
+            end
+        end 
     end
 
     for k,ball in pairs(self.objects) do
@@ -75,6 +132,11 @@ function Room:render()
         VIRTUAL_WIDTH / gTextures['place2']:getWidth(),
         VIRTUAL_HEIGHT / gTextures['place2']:getHeight())
     
+    
+    for k, entity in pairs(self.entities) do
+        if not entity.dead then entity:render(self.adjacentOffsetX, self.adjacentOffsetY) end
+    end
+
     if self.player then
         self.player:render()
     end
