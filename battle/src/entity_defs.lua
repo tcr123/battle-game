@@ -1,7 +1,7 @@
 
 ENTITY_DEFS = {
     ['enemy'] = {
-        walkSpeed = PLAYER_WALK_SPEED,
+        walkSpeed = 80,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},
@@ -153,6 +153,16 @@ ENTITY_DEFS = {
                 frames = {4, 5, 6, 7, 8, 9, 10},
                 interval = 0.08,
                 texture = 'woody2'
+            },
+            ['power2-left'] = {
+                frames = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11},
+                interval = 0.08,
+                texture = 'woody2-mirror'
+            },
+            ['power2-right'] = {
+                frames = {11, 12, 13, 14, 15, 16, 17, 18, 19},
+                interval = 0.08,
+                texture = 'woody2'
             }
         }
     },
@@ -240,6 +250,16 @@ ENTITY_DEFS = {
             },
             ['power1-right'] = {
                 frames = {11, 12, 13, 14, 15, 16},
+                interval = 0.09,
+                texture = 'ex2'
+            },
+            ['power2-left'] = {
+                frames = {30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40},
+                interval = 0.09,
+                texture = 'ex2-mirror'
+            },
+            ['power2-right'] = {
+                frames = {21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31},
                 interval = 0.09,
                 texture = 'ex2'
             }
@@ -331,6 +351,16 @@ ENTITY_DEFS = {
                 frames = {4, 5, 6, 7, 8, 9, 10},
                 interval = 0.08,
                 texture = 'dennis2'
+            },
+            ['power2-left'] = {
+                frames = {40, 39, 38, 37, 36, 35, 34, 33, 32, 31},
+                interval = 0.08,
+                texture = 'dennis2-mirror'
+            },
+            ['power2-right'] = {
+                frames = {31, 32, 33, 34, 35, 36, 37, 38, 39, 40},
+                interval = 0.08,
+                texture = 'dennis2'
             }
         }
     },
@@ -418,6 +448,16 @@ ENTITY_DEFS = {
             },
             ['power1-right'] = {
                 frames = {4, 5, 6, 7, 8, 9, 10},
+                interval = 0.08,
+                texture = 'davis2'
+            },
+            ['power2-left'] = {
+                frames = {40, 39, 38, 37, 36, 35 ,34, 33, 32},
+                interval = 0.08,
+                texture = 'davis2-mirror'
+            },
+            ['power2-right'] = {
+                frames = {30, 31, 32, 33, 34, 35, 36, 37, 38},
                 interval = 0.08,
                 texture = 'davis2'
             }

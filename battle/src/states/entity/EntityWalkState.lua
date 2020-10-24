@@ -50,33 +50,107 @@ function EntityWalkState:update(dt)
             self.entity.y = bottomEdge - self.entity.height
             self.bumped = true
         end
+    elseif self.entity.direction =='up-right' then
+        self.entity.x = self.entity.x + self.entity.walkSpeed * dt
+        self.entity.y = self.entity.y - PLAYER_WALK_SPEED_SCROLL * dt
+
+        if self.entity.x + self.entity.width >= VIRTUAL_WIDTH + 12 then
+            self.entity.x = VIRTUAL_WIDTH - self.entity.width + 12
+            self.bumped = true
+        end
+
+        if self.entity.y <= MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height then 
+            self.entity.y = MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height
+            self.bumped = true
+        end
+    elseif self.entity.direction == 'up-left' then
+        self.entity.x = self.entity.x - self.entity.walkSpeed * dt
+        self.entity.y = self.entity.y - PLAYER_WALK_SPEED_SCROLL * dt
+
+        if self.entity.x <= MAP_RENDER_OFFSET_X - (TILE_SIZE * 2) then 
+            self.entity.x = MAP_RENDER_OFFSET_X - (TILE_SIZE * 2)
+            self.bumped = true
+        end
+
+        if self.entity.y <= MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height then 
+            self.entity.y = MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height
+            self.bumped = true
+        end
+    elseif self.entity.direction == 'down-right' then
+        self.entity.x = self.entity.x + self.entity.walkSpeed * dt
+        self.entity.y = self.entity.y + PLAYER_WALK_SPEED_SCROLL * dt
+
+        if self.entity.x + self.entity.width >= VIRTUAL_WIDTH + 12 then
+            self.entity.x = VIRTUAL_WIDTH - self.entity.width + 12
+            self.bumped = true
+        end
+
+        local bottomEdge = VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) 
+            + MAP_RENDER_OFFSET_Y - TILE_SIZE
+
+        if self.entity.y + self.entity.height >= bottomEdge then
+            self.entity.y = bottomEdge - self.entity.height
+            self.bumped = true
+        end
+    elseif self.entity.direction == 'down-left' then
+        self.entity.x = self.entity.x - self.entity.walkSpeed * dt
+        self.entity.y = self.entity.y + PLAYER_WALK_SPEED_SCROLL * dt
+
+        if self.entity.x <= MAP_RENDER_OFFSET_X - (TILE_SIZE * 2) then 
+            self.entity.x = MAP_RENDER_OFFSET_X - (TILE_SIZE * 2)
+            self.bumped = true
+        end
+
+        local bottomEdge = VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) 
+            + MAP_RENDER_OFFSET_Y - TILE_SIZE
+
+        if self.entity.y + self.entity.height >= bottomEdge then
+            self.entity.y = bottomEdge - self.entity.height
+            self.bumped = true
+        end
     end
 end
 
 function EntityWalkState:processAI(params, dt)
     local room = params.room
-    local directions = {'left', 'right'}
+    self.player = params.player
+    local reach = false
 
-    if self.moveDuration == 0 or self.bumped then
-        
-        -- set an initial move duration and direction
-        self.moveDuration = math.random(5)
-        self.entity.direction = directions[math.random(#directions)]
-        self.entity:changeAnimation('walk-' .. tostring(self.entity.direction))
-    elseif self.movementTimer > self.moveDuration then
-        self.movementTimer = 0
-
-        -- chance to go idle
-        if math.random(3) == 1 then
-            self.entity:changeState('idle')
-        else
-            self.moveDuration = math.random(5)
-            self.entity.direction = directions[math.random(#directions)]
-            self.entity:changeAnimation('walk-' .. tostring(self.entity.direction))
+    if self.entity.x < self.player.x + 20 and reach == false then
+        self.entity.direction = 'right'
+        self.entity.left = true
+        if self.entity.x > self.player.x then
+            reach = true
+        end
+    elseif self.entity.x > self.player.x - 20 and reach == false then
+        self.entity.direction = 'left'
+        self.entity.left = true
+        if self.entity.x < self.player.x then
+            reach = true
         end
     end
 
-    self.movementTimer = self.movementTimer + dt
+    if self.entity.y < self.player.y and reach == true then
+        self.entity.direction = 'down'
+        if self.entity.y > self.player.y then
+            reach = false
+        end
+    elseif self.entity.y > self.player.y and reach == true then
+        self.entity.direction = 'up'
+        if self.entity.y < self.player.y then
+            reach = false
+        end
+    end
+
+    if self.entity.direction == 'right' or self.entity.direction == 'left' then
+        self.entity:changeAnimation('walk-' .. tostring(self.entity.direction))
+    else
+        if self.entity.left == true then
+            self.entity:changeAnimation('walk-left')
+        else
+            self.entity:changeAnimation('walk-right')
+        end
+    end
 end
 
 function EntityWalkState:render()
