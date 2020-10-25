@@ -16,37 +16,37 @@ function PlayerAttackState3:init(player, dungeon)
 
     if direction == 'left' then
         hitboxWidth = 10
-        hitboxHeight = 32
-        hitboxX = self.player.x 
-        hitboxY = self.player.y + 2
+        hitboxHeight = 20
+        hitboxX = self.player.x + 2
+        hitboxY = self.player.y + 8
     elseif direction == 'right' then
         hitboxWidth = 10
-        hitboxHeight = 32
-        hitboxX = self.player.x + self.player.width - 6
-        hitboxY = self.player.y + 2
+        hitboxHeight = 20
+        hitboxX = self.player.x + self.player.width - 4
+        hitboxY = self.player.y + 8
     elseif direction == 'up' then
         if left == true then
             hitboxWidth = 10
-            hitboxHeight = 32
-            hitboxX = self.player.x 
-            hitboxY = self.player.y + 2
+            hitboxHeight = 20
+            hitboxX = self.player.x + 2
+            hitboxY = self.player.y + 8
         else
             hitboxWidth = 10
-            hitboxHeight = 32
-            hitboxX = self.player.x + self.player.width - 6
-            hitboxY = self.player.y + 2
+            hitboxHeight = 20
+            hitboxX = self.player.x + self.player.width - 4
+            hitboxY = self.player.y + 8
         end
     else
         if left == true then
             hitboxWidth = 10
-            hitboxHeight = 32
-            hitboxX = self.player.x 
-            hitboxY = self.player.y + 2
+            hitboxHeight = 20
+            hitboxX = self.player.x + 2
+            hitboxY = self.player.y + 8
         else
             hitboxWidth = 10
-            hitboxHeight = 32
-            hitboxX = self.player.x + self.player.width -6
-            hitboxY = self.player.y + 2
+            hitboxHeight = 20
+            hitboxX = self.player.x + self.player.width - 4
+            hitboxY = self.player.y + 8
         end
     end
 
@@ -73,7 +73,7 @@ end
 function PlayerAttackState3:update(dt)
     -- check if hitbox collides with any entities in the scene
     for k, entity in pairs(self.dungeon.currentRoom.entities) do
-        if entity:collides(self.AttackHitbox) then
+        if entity:collides(self.AttackHitbox3) then
             entity:damage(1)
             gSounds['hit-enemy']:play()
         end

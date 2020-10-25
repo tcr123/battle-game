@@ -63,51 +63,6 @@ function EntityWalkState:update(dt)
             self.entity.y = MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height
             self.bumped = true
         end
-    elseif self.entity.direction == 'up-left' then
-        self.entity.x = self.entity.x - self.entity.walkSpeed * dt
-        self.entity.y = self.entity.y - PLAYER_WALK_SPEED_SCROLL * dt
-
-        if self.entity.x <= MAP_RENDER_OFFSET_X - (TILE_SIZE * 2) then 
-            self.entity.x = MAP_RENDER_OFFSET_X - (TILE_SIZE * 2)
-            self.bumped = true
-        end
-
-        if self.entity.y <= MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height then 
-            self.entity.y = MAP_RENDER_OFFSET_Y + TILE_SIZE + self.entity.height
-            self.bumped = true
-        end
-    elseif self.entity.direction == 'down-right' then
-        self.entity.x = self.entity.x + self.entity.walkSpeed * dt
-        self.entity.y = self.entity.y + PLAYER_WALK_SPEED_SCROLL * dt
-
-        if self.entity.x + self.entity.width >= VIRTUAL_WIDTH + 12 then
-            self.entity.x = VIRTUAL_WIDTH - self.entity.width + 12
-            self.bumped = true
-        end
-
-        local bottomEdge = VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) 
-            + MAP_RENDER_OFFSET_Y - TILE_SIZE
-
-        if self.entity.y + self.entity.height >= bottomEdge then
-            self.entity.y = bottomEdge - self.entity.height
-            self.bumped = true
-        end
-    elseif self.entity.direction == 'down-left' then
-        self.entity.x = self.entity.x - self.entity.walkSpeed * dt
-        self.entity.y = self.entity.y + PLAYER_WALK_SPEED_SCROLL * dt
-
-        if self.entity.x <= MAP_RENDER_OFFSET_X - (TILE_SIZE * 2) then 
-            self.entity.x = MAP_RENDER_OFFSET_X - (TILE_SIZE * 2)
-            self.bumped = true
-        end
-
-        local bottomEdge = VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) 
-            + MAP_RENDER_OFFSET_Y - TILE_SIZE
-
-        if self.entity.y + self.entity.height >= bottomEdge then
-            self.entity.y = bottomEdge - self.entity.height
-            self.bumped = true
-        end
     end
 end
 
@@ -151,6 +106,10 @@ function EntityWalkState:processAI(params, dt)
             self.entity:changeAnimation('walk-right')
         end
     end
+
+    if not self.entity.dead and self.player:collides(self.entity) and not self.player.invulnerable then
+        self.entity:changeState('attack')
+    end 
 end
 
 function EntityWalkState:render()

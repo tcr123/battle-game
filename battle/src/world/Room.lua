@@ -31,10 +31,11 @@ end
     Randomly creates an assortment of enemies for the player to fight.
 ]]
 function Room:generateEntities()
+    local speed = {60, 70, 80}
     for i = 1, 2 do
         table.insert(self.entities, Entity {
             animations = ENTITY_DEFS['enemy'].animations,
-            walkSpeed = ENTITY_DEFS['enemy'].walkSpeed or 20,
+            walkSpeed = speed[math.random(#speed)],
 
             -- ensure X and Y are within bounds of the map
             x = math.random(MAP_RENDER_OFFSET_X + TILE_SIZE,
@@ -50,7 +51,8 @@ function Room:generateEntities()
 
         self.entities[i].stateMachine = StateMachine {
             ['walk'] = function() return EntityWalkState(self.entities[i]) end,
-            ['idle'] = function() return EntityIdleState(self.entities[i]) end
+            ['idle'] = function() return EntityIdleState(self.entities[i]) end,
+            ['attack'] = function() return EntityAttackState(self.entities[i]) end
         }
 
         self.entities[i]:changeState('walk')
@@ -100,17 +102,10 @@ function Room:update(dt)
             entity:processAI({room = self, player = self.player}, dt)
             entity:update(dt)
         end
-
-        -- collision between the player and entities in the room
-        if not entity.dead and self.player:collides(entity) and not self.player.invulnerable then
-            gSounds['hit-player']:play()
-            self.player:damage(1)
-            self.player:goInvulnerable(1.5)
-
-            if self.player.health == 0 then
-                gStateMachine:change('game-over')
-            end
-        end 
+        
+        if self.player.health == 0 then
+            gStateMachine:change('game-over')
+        end
     end
 
     for k,ball in pairs(self.objects) do

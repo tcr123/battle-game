@@ -1,7 +1,6 @@
 
 ENTITY_DEFS = {
     ['enemy'] = {
-        walkSpeed = 80,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},

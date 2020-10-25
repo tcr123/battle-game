@@ -18,37 +18,37 @@ function PlayerAttackState:init(player, dungeon)
 
     if direction == 'left' then
         hitboxWidth = 10
-        hitboxHeight = 32
-        hitboxX = self.player.x 
-        hitboxY = self.player.y + 2
+        hitboxHeight = 20
+        hitboxX = self.player.x + 2
+        hitboxY = self.player.y + 8
     elseif direction == 'right' then
         hitboxWidth = 10
-        hitboxHeight = 32
-        hitboxX = self.player.x + self.player.width - 6
-        hitboxY = self.player.y + 2
+        hitboxHeight = 20
+        hitboxX = self.player.x + self.player.width - 4
+        hitboxY = self.player.y + 8
     elseif direction == 'up' then
         if left == true then
             hitboxWidth = 10
-            hitboxHeight = 32
-            hitboxX = self.player.x 
-            hitboxY = self.player.y + 2
+            hitboxHeight = 20
+            hitboxX = self.player.x + 2
+            hitboxY = self.player.y + 8
         else
             hitboxWidth = 10
-            hitboxHeight = 32
-            hitboxX = self.player.x + self.player.width - 6
-            hitboxY = self.player.y + 2
+            hitboxHeight = 20
+            hitboxX = self.player.x + self.player.width - 4
+            hitboxY = self.player.y + 8
         end
     else
         if left == true then
             hitboxWidth = 10
-            hitboxHeight = 32
-            hitboxX = self.player.x 
-            hitboxY = self.player.y + 2
+            hitboxHeight = 20
+            hitboxX = self.player.x + 2
+            hitboxY = self.player.y + 8
         else
             hitboxWidth = 10
-            hitboxHeight = 32
-            hitboxX = self.player.x + self.player.width -6
-            hitboxY = self.player.y + 2
+            hitboxHeight = 20
+            hitboxX = self.player.x + self.player.width - 4
+            hitboxY = self.player.y + 8
         end
     end
 
@@ -103,9 +103,9 @@ function PlayerAttackState:render()
         math.floor(self.player.x - self.player.offsetX), math.floor(self.player.y - self.player.offsetY))
 
     -- debug for player and hitbox collision rects
-    -- love.graphics.setColor(255, 0, 255, 255)
-    -- love.graphics.rectangle('line', self.player.x, self.player.y, self.player.width, self.player.height)
-    -- love.graphics.rectangle('line', self.AttackHitbox.x, self.AttackHitbox.y,
-    --     self.AttackHitbox.width, self.AttackHitbox.height)
-    -- love.graphics.setColor(255, 255, 255, 255)
+     love.graphics.setColor(255, 0, 255, 255)
+     love.graphics.rectangle('line', self.player.x, self.player.y, self.player.width, self.player.height)
+     love.graphics.rectangle('line', self.AttackHitbox.x, self.AttackHitbox.y,
+         self.AttackHitbox.width, self.AttackHitbox.height)
+     love.graphics.setColor(255, 255, 255, 255)
 end

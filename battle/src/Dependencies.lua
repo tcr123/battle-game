@@ -27,6 +27,7 @@ require 'src/states/BaseState'
 
 require 'src/states/entity/EntityIdleState'
 require 'src/states/entity/EntityWalkState'
+require 'src/states/entity/EntityAttackState'
 
 require 'src/states/entity/player/PlayerIdleState'
 require 'src/states/entity/player/PlayerAttackState'
