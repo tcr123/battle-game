@@ -46,7 +46,7 @@ function Room:generateEntities()
             width = 41,
             height = 30,
 
-            health = 3
+            health = 1
         })
 
         self.entities[i].stateMachine = StateMachine {
@@ -127,9 +127,11 @@ function Room:render()
         VIRTUAL_WIDTH / gTextures['place2']:getWidth(),
         VIRTUAL_HEIGHT / gTextures['place2']:getHeight())
     
+  
     
     for k, entity in pairs(self.entities) do
-        if not entity.dead then entity:render(self.adjacentOffsetX, self.adjacentOffsetY) end
+        if not entity.dead then entity:render(self.adjacentOffsetX, self.adjacentOffsetY) elseif 
+            entity.dead then table.remove(self.entities, k) end
     end
 
     if self.player then

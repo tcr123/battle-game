@@ -85,12 +85,12 @@ function EntityWalkState:processAI(params, dt)
         end
     end
 
-    if self.entity.y < self.player.y and reach == true then
+    if self.entity.y < self.player.y + 5 and reach == true then
         self.entity.direction = 'down'
         if self.entity.y > self.player.y then
             reach = false
         end
-    elseif self.entity.y > self.player.y and reach == true then
+    elseif self.entity.y > self.player.y + 5 and reach == true then
         self.entity.direction = 'up'
         if self.entity.y < self.player.y then
             reach = false
