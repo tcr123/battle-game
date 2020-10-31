@@ -44,7 +44,7 @@ function Room:generateEntities()
                 VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE - 41),
             
             width = 41,
-            height = 41,
+            height = 30,
 
             health = 3
         })

@@ -21,26 +21,14 @@ ENTITY_DEFS = {
                 texture = 'enemy'
             },
             ['attack-left'] = {
-                frames = {20, 19, 18, 17},
-                interval = 0.07,
+                frames = {20, 19, 18, 17, 16, 15},
+                interval = 0.10,
                 looping = false,
                 texture = 'enemy-mirror'
             },
             ['attack-right'] = {
-                frames = {11, 12, 13, 14},
-                interval = 0.07,
-                looping = false,
-                texture = 'enemy'
-            },
-            ['attack3-left'] = {
-                frames = {16, 15},
-                interval = 0.07,
-                looping = false,
-                texture = 'enemy-mirror'
-            },
-            ['attack3-right'] = {
-                frames = {15, 16},
-                interval = 0.07,
+                frames = {11, 12, 13, 14, 15, 16},
+                interval = 0.10,
                 looping = false,
                 texture = 'enemy'
             },

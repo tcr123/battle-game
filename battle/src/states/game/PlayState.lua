@@ -13,13 +13,13 @@ function PlayState:init()
         y = VIRTUAL_HEIGHT / 2 - 11,
         
         width = 41,
-        height = 41,
+        height = 30,
 
         -- one heart == 2 health
         health = 10,
 
         -- rendering and collision offset for spaced sprites
-        offsetY = 5
+        offsetY = -5
     }
 
     self.dungeon = Dungeon(self.player)

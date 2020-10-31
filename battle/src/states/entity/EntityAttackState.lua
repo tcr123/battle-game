@@ -45,16 +45,6 @@ function EntityAttackState:init(entity)
     end
 
     self.EnemyHitbox = Hitbox(hitboxX, hitboxY, hitboxWidth, hitboxHeight)
-
-    if self.entity.direction == 'left' or  self.entity.direction == 'right' then
-        self.entity:changeAnimation('attack-' .. self.entity.direction)
-    else
-        if self.entity.left == true then
-            self.entity:changeAnimation('attack-left')
-        else 
-            self.entity:changeAnimation('attack-right')
-        end
-    end
 end
 
 function EntityAttackState:processAI(params, dt)
@@ -62,7 +52,18 @@ function EntityAttackState:processAI(params, dt)
     self.player = params.player
 
     if self.player:collides(self.EnemyHitbox) then
-        self.player.hit = true
+        if self.entity.direction == 'left' or  self.entity.direction == 'right' then
+            self.entity:changeAnimation('attack-' .. self.entity.direction)
+            self.player.hit = true
+        else
+            if self.entity.left == true then
+                self.entity:changeAnimation('attack-left')
+                self.player.hit = true
+            else 
+                self.entity:changeAnimation('attack-right')
+                self.player.hit = true
+            end
+        end
     end
 
     if self.player.hit == true then
@@ -71,10 +72,12 @@ function EntityAttackState:processAI(params, dt)
         self.player.hit = false
     end
 
-    if self.player.invulnerable then
-        self.entity:changeState('idle')
-    else 
-        self.entity:changeState('walk')
+    if self.player.currentAnimation.timesPlayed > 0.5 then
+        if self.player.invulnerable then
+            self.entity:changeState('idle')
+        else 
+            self.entity:changeState('walk')
+        end
     end
 end
 
