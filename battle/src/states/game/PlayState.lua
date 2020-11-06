@@ -24,6 +24,7 @@ function PlayState:init()
 
     self.dungeon = Dungeon(self.player)
     self.currentRoom = Room(self.player)
+    self.number = 4
     
     self.player.stateMachine = StateMachine {
         ['walk'] = function() return PlayerWalkState(self.player, self.dungeon) end,

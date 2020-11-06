@@ -3,6 +3,7 @@ Room = Class{}
 function Room:init(player)
     self.width = MAP_WIDTH
     self.height = MAP_HEIGHT
+    self.respawn = true
 
     -- entities in the room
     self.entities = {}
@@ -14,6 +15,9 @@ function Room:init(player)
     -- reference to player for collisions, etc.
     self.player = player
 
+    self.doorways = {}
+    table.insert(self.doorways, Doorway('right', false, self))
+
     -- used for centering the dungeon rendering
     self.renderOffsetX = MAP_RENDER_OFFSET_X
     self.renderOffsetY = MAP_RENDER_OFFSET_Y
@@ -22,8 +26,6 @@ function Room:init(player)
     self.adjacentOffsetX = 0
     self.adjacentOffsetY = 0
 
-    self.spawnHeart = false
-    self.posibility = math.random(2)
     self.interval = 0.55
 end
 
@@ -38,8 +40,8 @@ function Room:generateEntities()
             walkSpeed = speed[math.random(#speed)],
 
             -- ensure X and Y are within bounds of the map
-            x = math.random(MAP_RENDER_OFFSET_X + TILE_SIZE,
-                VIRTUAL_WIDTH - TILE_SIZE * 2 - 41),
+            x = VIRTUAL_WIDTH - TILE_SIZE * 2,
+
             y = math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE,
                 VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE - 41),
             
@@ -87,17 +89,13 @@ function Room:update(dt)
         -- remove entity from the table if health is <= 0
         if entity.health <= 0 then
             entity.dead = true
-            if self.spawnHeart == false then
-                if self.posibility == 1 then
-                    table.insert(self.objects, GameObject(
-                        GAME_OBJECT_DEFS['heart'],
-                        entity.x, entity.y
-                    ))
-
-                    self.spawnHeart = true
+            if entity.dead == true then
+                for k, doorway in pairs(self.doorways) do
+                    doorway.open = true
                 end
+    
+                gSounds['door']:play()
             end
-
         elseif not entity.dead then
             entity:processAI({room = self, player = self.player}, dt)
             entity:update(dt)
@@ -118,16 +116,23 @@ function Room:update(dt)
         elseif ball.x >= VIRTUAL_WIDTH + 60 then
             table.remove(self.objects, k)
         end
+
+        for k, entity in pairs(self.entities) do
+            if ball:collides(entity) then
+                table.remove(self.objects, k)
+                entity:damage(1)
+            end
+        end
     end
 end
 
 function Room:render()
     -- move through them convincingly
+    love.graphics.printf('No: ' .. tostring(self.number), 20, 24, 182, 'center')
+
     love.graphics.draw(gTextures['place2'], 0, 0, 0, 
         VIRTUAL_WIDTH / gTextures['place2']:getWidth(),
         VIRTUAL_HEIGHT / gTextures['place2']:getHeight())
-    
-  
     
     for k, entity in pairs(self.entities) do
         if not entity.dead then entity:render(self.adjacentOffsetX, self.adjacentOffsetY) elseif 
@@ -140,5 +145,9 @@ function Room:render()
 
     for k,ball in pairs(self.objects) do
         ball:render()
+    end
+
+    for k, doorway in pairs(self.doorways) do
+        doorway:render(self.adjacentOffsetX, self.adjacentOffsetY)
     end
 end

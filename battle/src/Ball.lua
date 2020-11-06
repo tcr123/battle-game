@@ -6,19 +6,8 @@ function Ball:init(def)
     self.direction = def.direction
     self.left = def.left
 
-    if self.type == 1 then
-        self.width = 60
-        self.height = 60
-    elseif self.type == 2 then
-        self.width = 34
-        self.height =30
-    elseif self.type == 3 then
-        self.width = 57
-        self.height = 44
-    elseif self.type == 4 then
-        self.width = 69
-        self.height = 34
-    end
+    self.width = 40
+    self.height = 30
 
     -- these variables are for keeping track of our velocity on both the
     -- X and Y axis, since the ball can move in two dimensions

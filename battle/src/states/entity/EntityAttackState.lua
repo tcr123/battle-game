@@ -51,6 +51,10 @@ function EntityAttackState:processAI(params, dt)
     local room = params.room
     self.player = params.player
 
+    if self.entity.direction == nil then
+        self.entity:changeState('idle')
+    end
+
     if self.player:collides(self.EnemyHitbox) then
         if self.entity.direction == 'left' or  self.entity.direction == 'right' then
             self.entity:changeAnimation('attack-' .. self.entity.direction)

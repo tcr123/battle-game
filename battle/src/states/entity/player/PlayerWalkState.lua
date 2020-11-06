@@ -106,6 +106,12 @@ function PlayerWalkState:update(dt)
             -- temporarily adjust position
             self.entity.x = self.entity.x + PLAYER_WALK_SPEED * dt
 
+            for k, doorway in pairs(self.dungeon.currentRoom.doorways) do
+                if self.entity:collides(doorway) and doorway.open then
+                    Event.dispatch('shift-right')
+                end
+            end
+
             -- readjust
             self.entity.x = self.entity.x - PLAYER_WALK_SPEED * dt
         elseif self.entity.direction == 'up' then
