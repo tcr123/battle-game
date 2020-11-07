@@ -5,6 +5,9 @@ function PlayState:enter(params)
 end
 
 function PlayState:init()
+    self.level = 1
+    self.times = 1
+
     self.player = Player {
         animations = ENTITY_DEFS['player'..TYPE].animations,
         walkSpeed = ENTITY_DEFS['player'..TYPE].walkSpeed,
@@ -16,16 +19,18 @@ function PlayState:init()
         height = 30,
 
         -- one heart == 2 health
-        health = 10,
+        health = ENTITY_DEFS['player'..TYPE].health,
+        
+        attack = ENTITY_DEFS['player'..TYPE].attack,
+        defend = ENTITY_DEFS['player'..TYPE].defend,
 
         -- rendering and collision offset for spaced sprites
         offsetY = -5
     }
 
-    self.dungeon = Dungeon(self.player)
-    self.currentRoom = Room(self.player)
-    self.number = 4
-    
+    self.dungeon = Dungeon(self.player, self.level)
+    self.currentRoom = Room(self.player, self.level)
+        
     self.player.stateMachine = StateMachine {
         ['walk'] = function() return PlayerWalkState(self.player, self.dungeon) end,
         ['idle'] = function() return PlayerIdleState(self.player) end,
@@ -44,6 +49,15 @@ function PlayState:update(dt)
         love.event.quit()
     end
 
+    if self.dungeon.shifting == true and self.times == 1 then
+        self.level = self.level + 1
+        self.dungeon.level = self.level
+        self.currentRoom.level = self.level
+        self.times = 0
+    elseif self.dungeon.shifting == false then
+        self.times = 1
+    end
+
     self.dungeon:update(dt)
 end
 
@@ -53,22 +67,13 @@ function PlayState:render()
     self.dungeon:render()
     love.graphics.pop()
 
+    love.graphics.printf('No: ' .. tostring(self.level), 20, 24, 182, 'center')
+
     -- draw player hearts, top of screen
-    local healthLeft = self.player.health
-    local heartFrame = 1
+    local heartFrame = 5
 
-    for i = 1, 5 do
-        if healthLeft > 1 then
-            heartFrame = 5
-        elseif healthLeft == 1 then
-            heartFrame = 3
-        else
-            heartFrame = 1
-        end
-
-        love.graphics.draw(gTextures['hearts'], gFrames['hearts'][heartFrame],
-            (i - 1) * (TILE_SIZE + 1), 2)
-        
-        healthLeft = healthLeft - 2
-    end
+    love.graphics.draw(gTextures['hearts'], gFrames['hearts'][heartFrame],
+        (1) * (TILE_SIZE), 2)
+    
+    love.graphics.printf('HP: ' .. tostring(self.player.health), TILE_SIZE * 2, 2, 182)
 end

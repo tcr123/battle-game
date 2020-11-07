@@ -1,6 +1,9 @@
 
 ENTITY_DEFS = {
     ['enemy'] = {
+        attack = 10,
+        defend = 10,
+        health = 50,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},
@@ -18,6 +21,22 @@ ENTITY_DEFS = {
             },
             ['idle-right'] = {
                 frames = {1},
+                texture = 'enemy'
+            },
+            ['dead-left'] = {
+                frames = {36},
+                texture = 'enemy-mirror'
+            },
+            ['dead-right'] = {
+                frames = {35},
+                texture = 'enemy'
+            },
+            ['hurt-left'] = {
+                frames = {41},
+                texture = 'enemy-mirror'
+            },
+            ['hurt-right'] = {
+                frames = {49},
                 texture = 'enemy'
             },
             ['attack-left'] = {
@@ -56,6 +75,10 @@ ENTITY_DEFS = {
     },
     ['player1'] = {
         walkSpeed = PLAYER_WALK_SPEED,
+        attack = 10,
+        defend = 10,
+        health = 100,
+        magic = 100,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},
@@ -155,6 +178,10 @@ ENTITY_DEFS = {
     },
     ['player2'] = {
         walkSpeed = PLAYER_WALK_SPEED,
+        attack = 10,
+        defend = 10,
+        health = 100,
+        magic = 100,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},
@@ -254,6 +281,10 @@ ENTITY_DEFS = {
     },  
     ['player3'] = {
         walkSpeed = PLAYER_WALK_SPEED,
+        attack = 10,
+        defend = 10,
+        health = 100,
+        magic = 100,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},
@@ -353,6 +384,10 @@ ENTITY_DEFS = {
     },
     ['player4'] = {
         walkSpeed = PLAYER_WALK_SPEED,
+        attack = 10,
+        defend = 10,
+        health = 100,
+        magic = 100,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},

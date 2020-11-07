@@ -23,12 +23,19 @@ function Entity:init(def)
     self.walkSpeed = def.walkSpeed
 
     self.health = def.health
+    self.attackV = def.attack
+    self.defendV = def.defend
 
     -- flags for flashing the entity when hit
     self.invulnerable = false
     self.invulnerableDuration = 0
     self.invulnerableTimer = 0
     self.flashTimer = 0
+
+    -- for enemy when being hit
+    self.notSelected = false
+    self.notSelectedDuration = 0
+    self.notSelectedTimer = 0
     
     self.dead = false
 end
@@ -59,6 +66,11 @@ function Entity:damage(dmg)
     self.health = self.health - dmg
 end
 
+function Entity:goNotSelected(duration)
+    self.notSelected = true
+    self.notSelectedDuration = duration
+end
+
 function Entity:goInvulnerable(duration)
     self.invulnerable = true
     self.invulnerableDuration = duration
@@ -82,6 +94,16 @@ function Entity:update(dt)
             self.invulnerableTimer = 0
             self.invulnerableDuration = 0
             self.flashTimer = 0
+        end
+    end
+
+    if self.notSelected then
+        self.notSelectedTimer = self.notSelectedTimer + dt
+
+        if self.notSelectedTimer > self.notSelectedDuration then
+            self.notSelected = false
+            self.notSelectedTimer = 0
+            self.notSelectedDuration = 0
         end
     end
 
