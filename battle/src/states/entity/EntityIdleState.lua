@@ -2,6 +2,7 @@ EntityIdleState = Class{__includes = BaseState}
 
 function EntityIdleState:init(entity)
     self.entity = entity
+    self.entity.offsetX = 10
 
     if self.entity.direction == 'left' or  self.entity.direction == 'right' then
         self.entity:changeAnimation('idle-' .. self.entity.direction)

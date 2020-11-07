@@ -10,35 +10,35 @@ function EntityAttackState:init(entity)
 
     if direction == 'left' then
         hitboxWidth = 10
-        hitboxHeight = 16
+        hitboxHeight = 24
         hitboxX = self.entity.x 
         hitboxY = self.entity.y + 10
     elseif direction == 'right' then
         hitboxWidth = 10
-        hitboxHeight = 16
+        hitboxHeight = 24
         hitboxX = self.entity.x + self.entity.width - 6
         hitboxY = self.entity.y + 10
     elseif direction == 'up' then
         if left == true then
             hitboxWidth = 10
-            hitboxHeight = 16
+            hitboxHeight = 24
             hitboxX = self.entity.x 
             hitboxY = self.entity.y + 10
         else
             hitboxWidth = 10
-            hitboxHeight = 16
+            hitboxHeight = 24
             hitboxX = self.entity.x + self.entity.width - 6
             hitboxY = self.entity.y + 10
         end
     else
         if left == true then
             hitboxWidth = 10
-            hitboxHeight = 16
+            hitboxHeight = 24
             hitboxX = self.entity.x 
             hitboxY = self.entity.y + 10
         else
             hitboxWidth = 10
-            hitboxHeight = 16
+            hitboxHeight = 24
             hitboxX = self.entity.x + self.entity.width -6
             hitboxY = self.entity.y + 10
         end

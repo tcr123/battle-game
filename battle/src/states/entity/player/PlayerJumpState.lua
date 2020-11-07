@@ -3,7 +3,7 @@ PlayerJumpState = Class{__includes = BaseState}
 function PlayerJumpState:init(player)
     self.player = player
 
-    self.player.offsetX = 0
+    self.player.offsetX = 10
     self.player.offsetY = 5
 
     local direction = self.player.direction

@@ -6,7 +6,7 @@ function PlayerWalkState:init(player, dungeon)
 
     -- render offset for spaced character sprite
     self.entity.offsetY = 5
-    self.entity.offsetX = 0
+    self.entity.offsetX = 10
 end
 
 function PlayerWalkState:update(dt)

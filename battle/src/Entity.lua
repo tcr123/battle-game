@@ -38,7 +38,7 @@ function Entity:createAnimations(animations)
 
     for k, animationDef in pairs(animations) do
         animationsReturned[k] = Animation {
-            texture = animationDef.texture or 'entities',
+            texture = animationDef.texture or 'enemy',
             frames = animationDef.frames,
             interval = animationDef.interval
         }

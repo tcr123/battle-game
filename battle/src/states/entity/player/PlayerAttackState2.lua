@@ -7,7 +7,7 @@ function PlayerAttackState2:init(player, dungeon)
 
     -- render offset for spaced character sprite
     self.player.offsetY = 5
-    self.player.offsetX = 0
+    self.player.offsetX = 10
 
     -- create hitbox based on where the player is and facing
     local direction = self.player.direction
@@ -18,7 +18,7 @@ function PlayerAttackState2:init(player, dungeon)
     if direction == 'left' then
         hitboxWidth = 10
         hitboxHeight = 20
-        hitboxX = self.player.x + 2
+        hitboxX = self.player.x - 6
         hitboxY = self.player.y + 8
     elseif direction == 'right' then
         hitboxWidth = 10
@@ -29,7 +29,7 @@ function PlayerAttackState2:init(player, dungeon)
         if left == true then
             hitboxWidth = 10
             hitboxHeight = 20
-            hitboxX = self.player.x + 2
+            hitboxX = self.player.x - 6
             hitboxY = self.player.y + 8
         else
             hitboxWidth = 10
@@ -41,7 +41,7 @@ function PlayerAttackState2:init(player, dungeon)
         if left == true then
             hitboxWidth = 10
             hitboxHeight = 20
-            hitboxX = self.player.x + 2
+            hitboxX = self.player.x - 6
             hitboxY = self.player.y + 8
         else
             hitboxWidth = 10
@@ -76,7 +76,9 @@ function PlayerAttackState2:update(dt)
     for k, entity in pairs(self.dungeon.currentRoom.entities) do
         if entity:collides(self.AttackHitbox2) then
             entity:damage(1)
-            gSounds['hit-enemy']:play()
+            if not entity.dead then
+                gSounds['hit-enemy']:play()
+            end
         end
     end
 

@@ -12,6 +12,7 @@ function EntityWalkState:init(entity, dungeon)
 
     -- keeps track of whether we just hit a wall
     self.bumped = false
+    self.entity.offsetX = 10
 end
 
 function EntityWalkState:update(dt)
@@ -71,13 +72,13 @@ function EntityWalkState:processAI(params, dt)
     self.player = params.player
     local reach = false
 
-    if self.entity.x < self.player.x + 20 and reach == false then
+    if self.entity.x < self.player.x +  10 and reach == false then
         self.entity.direction = 'right'
         self.entity.left = true
         if self.entity.x > self.player.x then
             reach = true
         end
-    elseif self.entity.x > self.player.x - 20 and reach == false then
+    elseif self.entity.x > self.player.x - 10 and reach == false then
         self.entity.direction = 'left'
         self.entity.left = true
         if self.entity.x < self.player.x then

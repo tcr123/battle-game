@@ -6,7 +6,7 @@ function PlayerPower1State:init(player, dungeon)
 
     -- render offset for spaced character sprite
     self.player.offsetY = 5
-    self.player.offsetX = 0
+    self.player.offsetX = 10
 
     -- create hitbox based on where the player is and facing
     local direction = self.player.direction

@@ -45,7 +45,7 @@ function Room:generateEntities()
             y = math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE,
                 VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE - 41),
             
-            width = 41,
+            width = 20,
             height = 30,
 
             health = 1
@@ -121,6 +121,9 @@ function Room:update(dt)
             if ball:collides(entity) then
                 table.remove(self.objects, k)
                 entity:damage(1)
+                if not entity.dead then
+                    gSounds['hit-enemy']:play()
+                end
             end
         end
     end
@@ -135,8 +138,7 @@ function Room:render()
         VIRTUAL_HEIGHT / gTextures['place2']:getHeight())
     
     for k, entity in pairs(self.entities) do
-        if not entity.dead then entity:render(self.adjacentOffsetX, self.adjacentOffsetY) elseif 
-            entity.dead then table.remove(self.entities, k) end
+        if not entity.dead then entity:render(self.adjacentOffsetX, self.adjacentOffsetY) end
     end
 
     if self.player then
@@ -145,9 +147,5 @@ function Room:render()
 
     for k,ball in pairs(self.objects) do
         ball:render()
-    end
-
-    for k, doorway in pairs(self.doorways) do
-        doorway:render(self.adjacentOffsetX, self.adjacentOffsetY)
     end
 end
