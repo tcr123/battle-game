@@ -25,6 +25,7 @@ function Entity:init(def)
     self.health = def.health
     self.attackV = def.attack
     self.defendV = def.defend
+    self.magic = def.magic
 
     -- flags for flashing the entity when hit
     self.invulnerable = false

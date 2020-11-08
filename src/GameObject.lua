@@ -26,6 +26,7 @@ function GameObject:init(def, x, y)
     -- default empty collision callback
     self.onCollide = function () end
     self.consumable = def.consumable
+    self.consumable2 = def.consumable2
     self.pickup = def.pickup
     self.moving = def.moving
     self.movingleft = def.movingleft
@@ -97,5 +98,5 @@ end
 
 function GameObject:render(adjacentOffsetX, adjacentOffsetY)
     love.graphics.draw(gTextures[self.texture], gFrames[self.texture][self.states[self.state].frame or self.frame],
-        math.floor(self.x + adjacentOffsetX), math.floor(self.y + adjacentOffsetY))
+        math.floor(self.x + (adjacentOffsetX)), math.floor(self.y + (adjacentOffsetY)))
 end

@@ -15,6 +15,10 @@ function Room:init(player, level)
     self.entities = {}
     self:generateEntities()
 
+    -- object in the room
+    self.items = {}
+    self:generateObjects()
+
     self.doorways = {}
     table.insert(self.doorways, Doorway('right', false, self))
 
@@ -27,6 +31,8 @@ function Room:init(player, level)
     self.adjacentOffsetY = 0
 
     self.interval = 0.55
+    self.soundDuration = 0
+    self.soundInterval = 10
 end
 
 --[[
@@ -42,7 +48,7 @@ function Room:generateEntities()
             -- ensure X and Y are within bounds of the map
             x = VIRTUAL_WIDTH - TILE_SIZE * 2,
 
-            y = math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE,
+            y = math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE ,
                 VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE - 41),
             
             width = 20,
@@ -193,6 +199,24 @@ function Room:generateEntities()
     end
 end
 
+function Room:generateObjects()
+    table.insert(self.items, GameObject(
+        GAME_OBJECT_DEFS['heart'],
+        math.random(MAP_RENDER_OFFSET_X + TILE_SIZE,
+                    VIRTUAL_WIDTH - TILE_SIZE * 2 - 16),
+        math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE,
+                    VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE + 41)
+    ))
+
+    table.insert(self.items, GameObject(
+        GAME_OBJECT_DEFS['power'],
+        math.random(MAP_RENDER_OFFSET_X + TILE_SIZE,
+                    VIRTUAL_WIDTH - TILE_SIZE * 2 - 16),
+        math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE,
+                    VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE + 41)
+    ))
+end
+
 --[[
     Randomly creates an assortment of obstacles for the player to navigate around.
 ]]
@@ -203,7 +227,8 @@ function Room:update(dt)
 
     self.player:update(dt)
 
-    if love.keyboard.wasPressed('n') and self.interval > 0.5  then
+    if love.keyboard.wasPressed('n') and self.interval > 0.5 and self.player.magic >= 20 then
+        self.player.magic = self.player.magic - 20
         self.interval = 0
         table.insert(self.objects, Ball {
             x = self.player.x,
@@ -221,14 +246,20 @@ function Room:update(dt)
         -- remove entity from the table if health is <= 0
         if entity.health <= 0 then
             entity:changeState('dead')
+
+            self.soundDuration = self.soundDuration + dt
+
+            if self.soundDuration > self.soundInterval then
+                self.soundDuration = 0
+                gSounds['nextlevel']:play()
+            end
+
             Timer.after(1, function()
                 entity.dead = true
                 if entity.dead == true then
                     for k, doorway in pairs(self.doorways) do
                         doorway.open = true
                     end
-        
-                    gSounds['door']:play()
                 end
             end)
         elseif not entity.dead then
@@ -253,12 +284,30 @@ function Room:update(dt)
         end
 
         for k, entity in pairs(self.entities) do
-            if ball:collides(entity) then
+            if ball:collides(entity) and not entity.dead then
                 table.remove(self.objects, k)
                 entity:damage(50 * self.player.attackV / entity.defendV)
                 if not entity.dead then
                     gSounds['hit-enemy']:play()
                 end
+            end
+        end
+    end
+
+    for k, object in pairs(self.items) do
+        object:update(dt)
+
+        -- trigger collision callback on object
+        if self.player:collides(object) then
+            object:onCollide()
+            if object.consumable == true then
+                self.player.health = math.min(self.player.health + 20, 100)
+                gSounds['pick-up']:play()
+                table.remove(self.items, k)
+            elseif object.consumable2 == true then
+                self.player.magic = math.min(self.player.magic + 20, 100)
+                gSounds['pick-up']:play()
+                table.remove(self.items, k)
             end
         end
     end
@@ -270,13 +319,19 @@ function Room:render()
     love.graphics.draw(gTextures['place2'], 0, 0, 0, 
         VIRTUAL_WIDTH / gTextures['place2']:getWidth(),
         VIRTUAL_HEIGHT / gTextures['place2']:getHeight())
+
+    for k, object in pairs(self.items) do
+        object:render(self.adjacentOffsetX, self.adjacentOffsetY)
+    end
     
     for k, entity in pairs(self.entities) do
         if not entity.dead then entity:render(self.adjacentOffsetX, self.adjacentOffsetY) end
+        
+        if entity.dead then love.graphics.printf('nextLv>', VIRTUAL_WIDTH - 64, VIRTUAL_HEIGHT / 2, 182) end
     end
 
     love.graphics.printf('No: ' .. tostring(self.level), 20, 64, 182, 'center')
-
+    
     if self.player then
         self.player:render()
     end

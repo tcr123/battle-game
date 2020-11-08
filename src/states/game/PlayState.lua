@@ -7,6 +7,8 @@ end
 function PlayState:init()
     self.level = 1
     self.times = 1
+    self.recoverMpDuration = 2
+    self.recoverMpTimer = 0
 
     self.player = Player {
         animations = ENTITY_DEFS['player'..TYPE].animations,
@@ -20,7 +22,7 @@ function PlayState:init()
 
         -- one heart == 2 health
         health = ENTITY_DEFS['player'..TYPE].health,
-        
+        magic = ENTITY_DEFS['player'..TYPE].magic,
         attack = ENTITY_DEFS['player'..TYPE].attack,
         defend = ENTITY_DEFS['player'..TYPE].defend,
 
@@ -38,7 +40,8 @@ function PlayState:init()
         ['attack2'] = function() return PlayerAttackState2(self.player, self.dungeon) end,
         ['attack3'] = function() return PlayerAttackState3(self.player, self.dungeon) end,
         ['jump'] = function() return PlayerJumpState(self.player) end,
-        ['power1'] = function() return PlayerPower1State(self.player, self.dungeon) end
+        ['power1'] = function() return PlayerPower1State(self.player, self.dungeon) end,
+        ['power2'] = function() return PlayerPower2State(self.player, self.dungeon) end
     }
 
     self.player:changeState('idle')
@@ -58,6 +61,13 @@ function PlayState:update(dt)
         self.times = 1
     end
 
+    self.recoverMpTimer = self.recoverMpTimer + dt
+
+    if self.recoverMpTimer > self.recoverMpDuration then
+        self.recoverMpTimer = 0
+        self.player.magic = math.min(self.player.magic + 10, 100)
+    end
+
     self.dungeon:update(dt)
 end
 
@@ -67,7 +77,7 @@ function PlayState:render()
     self.dungeon:render()
     love.graphics.pop()
 
-    love.graphics.printf('No: ' .. tostring(self.level), 20, 24, 182, 'center')
+    love.graphics.printf('No: ' .. tostring(self.level), 20, 36, 182, 'center')
 
     -- draw player hearts, top of screen
     local heartFrame = 5
@@ -76,4 +86,7 @@ function PlayState:render()
         (1) * (TILE_SIZE), 2)
     
     love.graphics.printf('HP: ' .. tostring(self.player.health), TILE_SIZE * 2, 2, 182)
+
+    love.graphics.setColor(50, 37, 214, 255)
+    love.graphics.printf('MP: ' .. tostring(self.player.magic), TILE_SIZE * 2, 16, 182)
 end

@@ -76,6 +76,7 @@ function PlayerAttackState2:update(dt)
     for k, entity in pairs(self.dungeon.currentRoom.entities) do
         if entity:collides(self.AttackHitbox2) then
             entity:damage(10 * self.player.attackV / entity.defendV)
+            entity:goNotSelected(0.5)
             if not entity.dead then
                 gSounds['hit-enemy']:play()
             end

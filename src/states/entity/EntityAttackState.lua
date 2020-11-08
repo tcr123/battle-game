@@ -71,7 +71,7 @@ function EntityAttackState:processAI(params, dt)
     end
 
     if self.player.hit == true and not self.player.invulnerable then
-        self.player:damage(5 * self.entity.attackV / self.player.defendV)
+        self.player:damage(10 * self.entity.attackV / self.player.defendV)
         self.player:goInvulnerable(1.5)
         self.player.hit = false
     end
