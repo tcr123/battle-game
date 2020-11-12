@@ -70,8 +70,8 @@ function EntityAttackState:processAI(params, dt)
         end
     end
 
-    if self.player.hit == true then
-        self.player:damage(0)
+    if self.player.hit == true and not self.player.invulnerable then
+        self.player:damage(10 * self.entity.attackV / self.player.defendV)
         self.player:goInvulnerable(1.5)
         self.player.hit = false
     end
@@ -91,9 +91,9 @@ function EntityAttackState:render()
         math.floor(self.entity.x - self.entity.offsetX), math.floor(self.entity.y - self.entity.offsetY))
     
     -- debug for player and hitbox collision rects
-     love.graphics.setColor(255, 0, 255, 255)
-     love.graphics.rectangle('line', self.entity.x, self.entity.y, self.entity.width, self.entity.height)
-     love.graphics.rectangle('line', self.EnemyHitbox.x, self.EnemyHitbox.y,
-         self.EnemyHitbox.width, self.EnemyHitbox.height)
-     love.graphics.setColor(255, 255, 255, 255)
+    -- love.graphics.setColor(255, 0, 255, 255)
+    -- love.graphics.rectangle('line', self.entity.x, self.entity.y, self.entity.width, self.entity.height)
+    -- love.graphics.rectangle('line', self.EnemyHitbox.x, self.EnemyHitbox.y,
+     --    self.EnemyHitbox.width, self.EnemyHitbox.height)
+    -- love.graphics.setColor(255, 255, 255, 255)
 end

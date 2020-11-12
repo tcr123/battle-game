@@ -74,7 +74,8 @@ function PlayerAttackState3:update(dt)
     -- check if hitbox collides with any entities in the scene
     for k, entity in pairs(self.dungeon.currentRoom.entities) do
         if entity:collides(self.AttackHitbox3) then
-            entity:damage(1)
+            entity:damage(30 * self.player.attackV / entity.defendV)
+            entity:goNotSelected(0.5)
             if not entity.dead then
                 gSounds['hit-enemy']:play()
             end

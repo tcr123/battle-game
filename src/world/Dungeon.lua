@@ -1,12 +1,13 @@
 
 Dungeon = Class{}
 
-function Dungeon:init(player)
+function Dungeon:init(player, level)
     self.player = player
+    self.level = level
     self.rooms = {}
 
     -- current room we're operating in
-    self.currentRoom = Room(self.player)
+    self.currentRoom = Room(self.player, self.level)
 
     -- room we're moving camera to during a shift; becomes active room afterwards
     self.nextRoom = nil
@@ -27,7 +28,7 @@ end
 function Dungeon:beginShifting(shiftX, shiftY)
     self.shifting = true
     
-    self.nextRoom = Room(self.player)
+    self.nextRoom = Room(self.player, self.level + 1)
 
     -- start all doors in next room as open until we get in
     for k, doorway in pairs(self.nextRoom.doorways) do
@@ -101,4 +102,6 @@ function Dungeon:render()
     if self.nextRoom then
         self.nextRoom:render()
     end
+
+    love.graphics.printf('No: ' .. tostring(self.level), 20, 48, 182, 'center')
 end

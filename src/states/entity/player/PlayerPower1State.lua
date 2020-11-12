@@ -33,7 +33,7 @@ end
 
 function PlayerPower1State:update(dt)
     if self.player.currentAnimation.timesPlayed > 0.5 then
-        if love.keyboard.wasPressed('n') then
+        if love.keyboard.wasPressed('n') and self.player.magic >= 20 then
             self.player.currentAnimation.timesPlayed = 0
             self.player:changeState('power1')
         else

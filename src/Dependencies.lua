@@ -28,6 +28,8 @@ require 'src/states/BaseState'
 require 'src/states/entity/EntityIdleState'
 require 'src/states/entity/EntityWalkState'
 require 'src/states/entity/EntityAttackState'
+require 'src/states/entity/EntityDeadState'
+require 'src/states/entity/EntityHurtState'
 
 require 'src/states/entity/player/PlayerIdleState'
 require 'src/states/entity/player/PlayerAttackState'
@@ -36,11 +38,13 @@ require 'src/states/entity/player/PlayerAttackState3'
 require 'src/states/entity/player/PlayerWalkState'
 require 'src/states/entity/player/PlayerJumpState'
 require 'src/states/entity/player/PlayerPower1State'
+require 'src/states/entity/player/PlayerPower2State'
 
 require 'src/states/game/GameOverState'
 require 'src/states/game/SelectState'
 require 'src/states/game/PlayState'
 require 'src/states/game/StartState'
+require 'src/states/game/VictoryState'
 
 gImage ={
     ['player1'] = love.graphics.newImage('graphics/select/woody.bmp'),
@@ -79,6 +83,7 @@ gTextures = {
     ['flare-ballmirror'] = love.graphics.newImage('graphics/woody/Flare_ballmirror.png'),
     ['ex-ball'] = love.graphics.newImage('graphics/ex/exball.png'),
     ['ex-ballmirror'] = love.graphics.newImage('graphics/ex/exballmirror.png'),
+    ['dragon-ball'] = love.graphics.newImage('graphics/boss/dragonball.png'),
 
     ['woody2'] = love.graphics.newImage('graphics/woody/woody2.png'),
     ['woody2-mirror'] = love.graphics.newImage('graphics/woody/woody2mirror.png'),
@@ -87,7 +92,14 @@ gTextures = {
     ['davis2'] = love.graphics.newImage('graphics/davis/davis2.png'),
     ['davis2-mirror'] = love.graphics.newImage('graphics/davis/davis2mirror.png'),
     ['ex2'] = love.graphics.newImage('graphics/ex/ex2.png'),
-    ['ex2-mirror'] = love.graphics.newImage('graphics/ex/ex2mirror.png')
+    ['ex2-mirror'] = love.graphics.newImage('graphics/ex/ex2mirror.png'),
+
+    -- boss
+    ['boss'] = love.graphics.newImage('graphics/boss/boss.png'),
+    ['boss-mirror'] = love.graphics.newImage('graphics/boss/boss_mirror.png'),
+    ['boss2'] = love.graphics.newImage('graphics/boss/boss2.png'),
+    ['boss2-mirror'] = love.graphics.newImage('graphics/boss/boss2_mirror.png'),
+    ['boss3'] = love.graphics.newImage('graphics/boss/dragon_power.png')
 }
 
 gFrames = {
@@ -116,6 +128,7 @@ gFrames = {
     ['flare-ballmirror'] = GenerateQuads(gTextures['flare-ballmirror'], 40, 40),
     ['ex-ball'] = GenerateQuads(gTextures['ex-ball'], 34, 30),
     ['ex-ballmirror'] = GenerateQuads(gTextures['ex-ballmirror'], 34, 30),
+    ['dragon-ball'] = GenerateQuads(gTextures['dragon-ball'], 89, 40),
 
     ['woody2'] = GenerateQuads(gTextures['woody2'], 41, 41),
     ['woody2-mirror'] = GenerateQuads(gTextures['woody2-mirror'], 41, 41),
@@ -124,7 +137,13 @@ gFrames = {
     ['davis2'] = GenerateQuads(gTextures['davis2'], 41.4, 41),
     ['davis2-mirror'] = GenerateQuads(gTextures['davis2-mirror'], 41.4, 41),
     ['ex2'] = GenerateQuads(gTextures['ex2'], 41.4, 40.5),
-    ['ex2-mirror'] = GenerateQuads(gTextures['ex2-mirror'], 41.4, 40.5)
+    ['ex2-mirror'] = GenerateQuads(gTextures['ex2-mirror'], 41.4, 40.5),
+
+    ['boss'] = GenerateQuads(gTextures['boss'], 41.4, 41),
+    ['boss-mirror'] = GenerateQuads(gTextures['boss-mirror'], 41.4, 41),
+    ['boss2'] = GenerateQuads(gTextures['boss2'], 83, 41),
+    ['boss2-mirror'] = GenerateQuads(gTextures['boss2-mirror'], 83, 41),
+    ['boss3'] = GenerateQuads(gTextures['boss3'], 103, 213)
 }
 
 gFonts = {
@@ -147,5 +166,7 @@ gSounds = {
     ['break'] = love.audio.newSource('sounds/break.wav'),
     ['no-select'] = love.audio.newSource('sounds/no-select.wav'),
     ['select'] = love.audio.newSource('sounds/select.wav'),
-    ['confirm'] = love.audio.newSource('sounds/confirm.wav')
+    ['confirm'] = love.audio.newSource('sounds/confirm.wav'),
+    ['nextlevel'] = love.audio.newSource('sounds/nextlevel.wav'),
+    ['bom'] = love.audio.newSource('sounds/bom.wav')
 }

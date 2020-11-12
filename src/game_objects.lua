@@ -32,6 +32,21 @@ GAME_OBJECT_DEFS = {
         },
         consumable = true
     },
+    ['power'] = {
+        type = 'magic',
+        texture = 'hearts',
+        frame = 6,
+        width = 16,
+        height = 16,
+        solid = false,
+        defaultState = 'present',
+        states = {
+            ['present'] = {
+                frame = 6
+            },
+        },
+        consumable2 = true
+    },
     ['pot'] = {
         -- TODO
         type = 'pot',

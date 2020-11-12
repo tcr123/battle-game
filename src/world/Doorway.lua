@@ -9,7 +9,7 @@ function Doorway:init(direction, open, room)
         self.x = MAP_RENDER_OFFSET_X + (MAP_WIDTH * TILE_SIZE) - TILE_SIZE
         self.y = 0
         self.height = VIRTUAL_HEIGHT
-        self.width = 16
+        self.width = 32
     end
 end
 

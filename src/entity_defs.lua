@@ -1,6 +1,9 @@
 
 ENTITY_DEFS = {
     ['enemy'] = {
+        attack = 10,
+        defend = 10,
+        health = 50,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},
@@ -18,6 +21,22 @@ ENTITY_DEFS = {
             },
             ['idle-right'] = {
                 frames = {1},
+                texture = 'enemy'
+            },
+            ['dead-left'] = {
+                frames = {36},
+                texture = 'enemy-mirror'
+            },
+            ['dead-right'] = {
+                frames = {35},
+                texture = 'enemy'
+            },
+            ['hurt-left'] = {
+                frames = {41},
+                texture = 'enemy-mirror'
+            },
+            ['hurt-right'] = {
+                frames = {49},
                 texture = 'enemy'
             },
             ['attack-left'] = {
@@ -54,8 +73,81 @@ ENTITY_DEFS = {
             }
         }
     },
+    ['boss'] = {
+        attack = 10,
+        defend = 20,
+        health = 200,
+        magic = 100,
+        animations = {
+            ['walk-left'] = {
+                frames = {30, 29, 28, 29},
+                interval = 0.155,
+                texture = 'boss-mirror'
+            },
+            ['walk-right'] = {
+                frames = {21, 22, 23, 22},
+                interval = 0.15,
+                texture = 'boss'
+            },
+            ['idle-left'] = {
+                frames = {10},
+                texture = 'boss-mirror'
+            },
+            ['idle-right'] = {
+                frames = {1},
+                texture = 'boss'
+            },
+            ['dead-left'] = {
+                frames = {64},
+                texture = 'boss-mirror'
+            },
+            ['dead-right'] = {
+                frames = {67},
+                texture = 'boss'
+            },
+            ['hurt-left'] = {
+                frames = {51},
+                texture = 'boss-mirror'
+            },
+            ['hurt-right'] = {
+                frames = {59},
+                texture = 'boss'
+            },
+            ['attack-left'] = {
+                frames = {20, 19, 18, 17, 16, 15},
+                interval = 0.10,
+                looping = false,
+                texture = 'boss-mirror'
+            },
+            ['attack-right'] = {
+                frames = {11, 12, 13, 14, 15, 16},
+                interval = 0.10,
+                looping = false,
+                texture = 'boss'
+            },
+            ['power1-left'] = {
+                frames = {3, 2, 1},
+                interval = 0.10,
+                texture = 'boss2-mirror'
+            },
+            ['power1-right'] = {
+                frames = {1, 2, 3},
+                interval = 0.10,
+                texture = 'boss2'
+            },
+            ['power2'] = {
+                frames = {1, 2, 3, 4, 3, 4, 2},
+                interval = 0.10,
+                texture = 'boss3'
+            }
+        }
+    },
     ['player1'] = {
         walkSpeed = PLAYER_WALK_SPEED,
+        attack = 10,
+        defend = 10,
+        health = 100,
+        magic = 100,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},
@@ -142,19 +234,23 @@ ENTITY_DEFS = {
                 texture = 'woody2'
             },
             ['power2-left'] = {
-                frames = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11},
-                interval = 0.08,
+                frames = {17, 16, 15, 14, 13, 12},
+                interval = 0.09,
                 texture = 'woody2-mirror'
             },
             ['power2-right'] = {
-                frames = {11, 12, 13, 14, 15, 16, 17, 18, 19},
-                interval = 0.08,
+                frames = {14, 15, 16, 17, 18, 19},
+                interval = 0.09,
                 texture = 'woody2'
             }
         }
     },
     ['player2'] = {
         walkSpeed = PLAYER_WALK_SPEED,
+        attack = 10,
+        defend = 10,
+        health = 100,
+        magic = 100,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},
@@ -241,19 +337,23 @@ ENTITY_DEFS = {
                 texture = 'ex2'
             },
             ['power2-left'] = {
-                frames = {30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40},
-                interval = 0.09,
+                frames = {37, 36, 35, 34, 33, 32, 31},
+                interval = 0.08,
                 texture = 'ex2-mirror'
             },
             ['power2-right'] = {
-                frames = {21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31},
-                interval = 0.09,
+                frames = {34, 35, 36, 37, 38, 39, 40},
+                interval = 0.08,
                 texture = 'ex2'
             }
         }
     },  
     ['player3'] = {
         walkSpeed = PLAYER_WALK_SPEED,
+        attack = 10,
+        defend = 10,
+        health = 100,
+        magic = 100,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},
@@ -341,18 +441,22 @@ ENTITY_DEFS = {
             },
             ['power2-left'] = {
                 frames = {40, 39, 38, 37, 36, 35, 34, 33, 32, 31},
-                interval = 0.08,
+                interval = 0.06,
                 texture = 'dennis2-mirror'
             },
             ['power2-right'] = {
                 frames = {31, 32, 33, 34, 35, 36, 37, 38, 39, 40},
-                interval = 0.08,
+                interval = 0.06,
                 texture = 'dennis2'
             }
         }
     },
     ['player4'] = {
         walkSpeed = PLAYER_WALK_SPEED,
+        attack = 10,
+        defend = 10,
+        health = 100,
+        magic = 100,
         animations = {
             ['walk-left'] = {
                 frames = {30, 29, 28, 29},
@@ -440,12 +544,12 @@ ENTITY_DEFS = {
             },
             ['power2-left'] = {
                 frames = {40, 39, 38, 37, 36, 35 ,34, 33, 32},
-                interval = 0.08,
+                interval = 0.07,
                 texture = 'davis2-mirror'
             },
             ['power2-right'] = {
                 frames = {30, 31, 32, 33, 34, 35, 36, 37, 38},
-                interval = 0.08,
+                interval = 0.07,
                 texture = 'davis2'
             }
         }

@@ -81,8 +81,17 @@ function PlayerWalkState:update(dt)
         self.entity:changeState('attack')
     end
 
-    if love.keyboard.wasPressed('n') then
-        self.entity:changeState('power1')
+    if self.entity.magic >= 20 then
+        if love.keyboard.wasPressed('n') then
+            self.entity:changeState('power1')
+        end
+    end
+
+    if self.entity.magic >= 50 then
+        if love.keyboard.wasPressed('b') then
+            self.entity.magic = self.entity.magic - 50
+            self.entity:changeState('power2')
+        end
     end
 
     if love.keyboard.wasPressed('space') then
