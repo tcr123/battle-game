@@ -236,7 +236,7 @@ function Room:generateObjects()
         GAME_OBJECT_DEFS['heart'],
         math.random(MAP_RENDER_OFFSET_X + TILE_SIZE,
                     VIRTUAL_WIDTH - TILE_SIZE * 2 - 16),
-        math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE + 24,
+        math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE + 30,
                     VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE + 21)
     ))
 
@@ -244,7 +244,7 @@ function Room:generateObjects()
         GAME_OBJECT_DEFS['power'],
         math.random(MAP_RENDER_OFFSET_X + TILE_SIZE,
                     VIRTUAL_WIDTH - TILE_SIZE * 2 - 16),
-        math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE + 24,
+        math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE + 30,
                     VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE + 21)
     ))
 end

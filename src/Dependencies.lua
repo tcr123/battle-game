@@ -56,6 +56,7 @@ gImage ={
 gTextures = {
     ['tiles'] = love.graphics.newImage('graphics/tilesheet.png'),
     ['background'] = love.graphics.newImage('graphics/background.png'),
+    ['background2'] = love.graphics.newImage('graphics/background2.jpg'),
     ['hearts'] = love.graphics.newImage('graphics/hearts.png'),
     ['switches'] = love.graphics.newImage('graphics/switches.png'),
     ['entities'] = love.graphics.newImage('graphics/entities.png'),

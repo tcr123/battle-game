@@ -19,9 +19,9 @@ function StartState:update(dt)
 end
 
 function StartState:render()
-    love.graphics.draw(gTextures['background'], 0, 0, 0, 
-        VIRTUAL_WIDTH / gTextures['background']:getWidth(),
-        VIRTUAL_HEIGHT / gTextures['background']:getHeight())
+    love.graphics.draw(gTextures['background2'], 0, 0, 0, 
+        VIRTUAL_WIDTH / gTextures['background2']:getWidth(),
+        VIRTUAL_HEIGHT / gTextures['background2']:getHeight())
 
     -- love.graphics.setFont(gFonts['gothic-medium'])
     -- love.graphics.printf('Legend of', 0, VIRTUAL_HEIGHT / 2 - 32, VIRTUAL_WIDTH, 'center')
